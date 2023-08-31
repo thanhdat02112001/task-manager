@@ -9,8 +9,7 @@
     <title>@yield('title', config('app.name', '@Master Layout'))</title>
 
     {{--Styles css common--}}
-    {{-- <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"> --}}
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     {{-- @yield('style-libraries') --}}
     {{--Styles custom--}}
     @yield('styles')
@@ -22,8 +21,6 @@
 
     @include('partials.sidebar')
 
-    {{--Scripts js common--}}
-    {{-- <script src="{{ asset('js/jquery-3.4.1.js') }}"></script> --}}
     {{--Scripts link to file or js custom--}}
     @yield('scripts')
 </body>
