@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('content')
-    <p class="text-danger" >abc</p>
+<p>abc</p>
 @endsection
 @section('scripts')
     <script type="module">

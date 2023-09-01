@@ -16,10 +16,14 @@
 </head>
 <body>
     @include('partials.header')
-
-    @yield('content')
-
-    @include('partials.sidebar')
+    <div id="app">
+        <div class="leftColumn leftColumn-entered">
+            @include('partials.sidebar')
+        </div>
+        <div class="centerColumn">
+            @yield('content')
+        </div>
+    </div>
 
     {{--Scripts link to file or js custom--}}
     @yield('scripts')
