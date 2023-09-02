@@ -1,0 +1,79 @@
+.myday-wrapper {
+    flex: 1 1 0px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #faf9f8;
+    transition: background-color 0.3s;
+    .task-top {
+        margin: 16px 24px;
+        .headline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .head-title {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 1.4rem;
+            }
+            .head-action {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .toolbar-action {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    position: relative;
+                    cursor: pointer;
+                    color: #34373d;
+                    line-height: 1.4rem;
+                    padding: 9px 12px;
+                    border: none;
+                    width: auto;
+                    height: auto;
+                    transition: background-color 100ms;
+                    border-radius: 4px;
+                    background-color: transparent;
+                
+                }
+            }
+        }
+        .subline {
+            color: #605e5c;
+            padding: 0 5px;
+            font-weight: 200;
+            font-size: 0.8rem;
+        }
+    }
+    .main {
+        margin: 0px 24px;
+        .addTask {
+            border: 1px solid #cbc9c9;
+            border-top: none;
+            border-radius: 4px;
+            box-shadow: 0px 0.3px 0.9px rgba(0,0,0,0.1), 0px 1.6px 3.6px rgba(0,0,0,0.1);
+            min-height: 52px;
+            padding: 0px 10px;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            .custom-input {
+                border: none;
+                outline: none;
+                background-color: transparent;
+               &:focus{
+                border: none;
+               }
+               &::placeholder {
+                color: #2564cf
+               }
+            }
+            .addInput {
+                width: calc(100% - 50px);
+            }
+        }
+       
+    }
+}
