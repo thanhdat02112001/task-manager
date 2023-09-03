@@ -23,7 +23,7 @@
                     </p>
                 </div>
                 <div class="interaction-signin">
-                    <a id="actionButton" class="button" href="#" rel="noreferrer">
+                    <a id="actionButton" class="button" href="{{route('google.redirect')}}" rel="noreferrer">
                         <span>Get started</span>
                     </a>
                 </div>

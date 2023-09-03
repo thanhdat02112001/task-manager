@@ -11,6 +11,6 @@
                 <input type="text" class="form-control h-100" placeholder="Search">
             </div>
         </div>
-        <div class="col-md-2 col-sm-2">profile</div>
+        <div class="col-md-2 col-sm-2">{{Auth::user()->name}}</div>
     </div>
 </div>
