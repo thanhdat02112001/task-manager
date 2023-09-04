@@ -43,4 +43,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * One to many relationship Todo
+     */
+    public function todos()
+    {
+        return $this->hasMany(Todo::class);
+    }
 }

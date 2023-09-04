@@ -7,6 +7,11 @@ import $ from 'jquery';
 import { popper } from '@popperjs/core';
 
 window.$ = $;
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+})
 window.Popper = popper;
 
 /**

@@ -36,15 +36,34 @@
     </div>
     <div class="main">
         <div class="addTask">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text custom-input">
-                    <svg width="20" height="20" fill="none" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M11.75 3a.75.75 0 0 1 .743.648l.007.102.001 7.25h7.253a.75.75 0 0 1 .102 1.493l-.102.007h-7.253l.002 7.25a.75.75 0 0 1-1.493.101l-.007-.102-.002-7.249H3.752a.75.75 0 0 1-.102-1.493L3.752 11h7.25L11 3.75a.75.75 0 0 1 .75-.75Z" fill="#2564cf"/></svg>
-                  </div>
+            <form action="{{route('todo.save')}}" class="w-100" id="formAddTodo">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                    <div class="input-group-text custom-input">
+                        <svg width="20" height="20" fill="none" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M11.75 3a.75.75 0 0 1 .743.648l.007.102.001 7.25h7.253a.75.75 0 0 1 .102 1.493l-.102.007h-7.253l.002 7.25a.75.75 0 0 1-1.493.101l-.007-.102-.002-7.249H3.752a.75.75 0 0 1-.102-1.493L3.752 11h7.25L11 3.75a.75.75 0 0 1 .75-.75Z" fill="#2564cf"/></svg>
+                    </div>
+                    </div>
+                    <input type="text" class="custom-input mt-2 addInput" id="todo_name" placeholder="Add a task" aria-label="Input group example">
                 </div>
-                <input type="text" class="custom-input mt-2 addInput" placeholder="Add a task" aria-label="Input group example">
-            </div>
+            </form>
+            
         </div>
     </div>
 </div>    
+@endsection
+@section('scripts')
+    <script type="module">
+        $("#formAddTodo").on('submit', function(e){
+            e.preventDefault();
+            let name = $("#todo_name").val()
+            let url = $(this).attr('action')
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: {
+                    'name': name, 
+                }
+            })
+        })
+    </script>
 @endsection
