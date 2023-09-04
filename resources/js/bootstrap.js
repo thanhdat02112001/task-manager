@@ -3,16 +3,16 @@
  * for JavaScript based Bootstrap features such as modals and tabs. This
  * code may be modified to fit the specific needs of your application.
  */
-import $ from 'jquery';
-import { popper } from '@popperjs/core';
+import * as Jquery from 'jquery';
+import * as Popper from '@popperjs/core';
 
-window.$ = $;
+window.$ = window.Jquery = Jquery;
 $.ajaxSetup({
   headers: {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
   }
 })
-window.Popper = popper;
+window.Popper = Popper;
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
