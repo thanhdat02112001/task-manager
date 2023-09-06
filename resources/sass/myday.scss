@@ -2,7 +2,7 @@
     flex: 1 1 0px;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    // overflow: hidden;
     background-color: #faf9f8;
     transition: background-color 0.3s;
     .task-top {
@@ -49,6 +49,8 @@
     }
     .main {
         margin: 0px 24px;
+        width: auto;
+        height: auto;
         .addTask {
             border: 1px solid #cbc9c9;
             border-top: none;
@@ -86,9 +88,6 @@
                 .dateButton-container {
                     display: flex;
                     margin-left: 2px;
-                    .root-42 {
-                        display: inline;
-                    }
                 }
                 button {
                     background: none;
@@ -113,7 +112,7 @@
             border-top: solid 1px #edebe9;
         }
         .baseAdd {
-            overflow: hidden;
+            // overflow: hidden;
             position: relative;
             flex-shrink: 0;
             display: flex;
@@ -121,6 +120,13 @@
             border-top:0px;
             border-top-left-radius: 0px;
             border-top-right-radius: 0px;
+            .custom-dropdown {
+                position: absolute;
+                width: auto;
+                .dropdown-choose {
+                    padding: 10px;
+                }
+            }
         }
         .screenreader-only {
             position: absolute;
