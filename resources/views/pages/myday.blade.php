@@ -290,21 +290,23 @@
             </div>
             <button aria-label="Add" class="baseAdd-button baseAdd-disabledButton taskcreation" tabindex="-1" disabled="">Add</button>
         </div>
-        <div class="todoList mt-4">
+        <div class="todoList mt-4" id="todoList">
+            @foreach ($todos as $todo)
             <div class="todoItem">
                 <div class="mark-done">
-                    <input type="checkbox" name="mark-done" id="isDone" class="checkbox-round d-none">
-                    <label for="isDone" title="Mark as done"></label>
+                    <input type="checkbox" name="mark-done" id="{{'isDone'.$todo->id}}" class="checkbox-round d-none" {{$todo->status == 1 ? "checked" : ""}}>
+                    <label for="{{'isDone'.$todo->id}}" title="Mark as done"></label>
                 </div>
                 <div class="todo-content">
-                    <span class="todo-title">Abc</span>
+                    <span class="todo-title">{{$todo->name}}</span>
                     <span class="text-secondary tag">Tasks</span>
                 </div>
                 <div class="mark-important">
-                    <input type="checkbox" id="isImportant" />
-                    <label for="isImportant" title="Mark as important"></label>
+                    <input type="checkbox" id="{{'isImportant'.$todo->id}}" {{($todo->important == 1) ? "checked" : ""}} />
+                    <label for="{{'isImportant'.$todo->id}}" title="Mark as important"></label>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
 </div>        
@@ -319,7 +321,32 @@
                 type: 'POST',
                 url: url,
                 data: {
-                    'name': name, 
+                    'name': name,
+                },
+                success: function(response) {
+                    if (response.code == 201) {
+                        $("#todoList").append(`
+                            <div class="todoItem">
+                                <div class="mark-done">
+                                    <input type="checkbox" name="mark-done" id="${'isDone'+response.newTodo['id']}" class="checkbox-round d-none" ${response.newTodo['status'] == 1 ? "checked" : ""}>
+                                    <label for="${'isDone'+response.newTodo['id']}" title="Mark as done"></label>
+                                </div>
+                                <div class="todo-content">
+                                    <span class="todo-title">${response.newTodo['name']}</span>
+                                    <span class="text-secondary tag">Tasks</span>
+                                </div>
+                                <div class="mark-important">
+                                    <input type="checkbox" id="${'isImportant'+response.newTodo['id']}" ${response.newTodo['important'] == 1 ? "checked" : ""} />
+                                    <label for="${'isImportant'+response.newTodo['id']}" title="Mark as important"></label>
+                                </div>
+                            </div>
+                        `)
+
+                        //reset input
+                        $("#todo_name").val("")
+                    } else {
+                        alert(response.message)
+                    }
                 }
             })
         })
