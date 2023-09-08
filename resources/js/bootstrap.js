@@ -5,8 +5,12 @@
  */
 import * as Jquery from 'jquery';
 import * as Popper from '@popperjs/core';
+import flatpickr from 'flatpickr';
+import moment from 'moment';
 
 window.$ = window.Jquery = Jquery;
+window.flatpickr = flatpickr
+window.moment = moment
 $.ajaxSetup({
   headers: {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

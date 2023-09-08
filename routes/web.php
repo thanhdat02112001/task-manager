@@ -18,11 +18,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
-Route::post('/todo/save', [TodoController::class, 'save'])->name('todo.save');
-Route::get('/myday', [TodoController::class, 'index'])->name('todo.index');
 
-Route::get('/logout', [AuthController::class, 'logout']);
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/logout', [AuthController::class, 'logout']);
+
+    Route::post('/todo/save', [TodoController::class, 'save'])->name('todo.save');
+    Route::get('/myday', [TodoController::class, 'index'])->name('todo.index'); 
+});
+

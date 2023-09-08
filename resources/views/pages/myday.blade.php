@@ -53,10 +53,19 @@
                     <button class="dateButton dropdown-toogle" aria-haspopup="true" type="button" id="dropdownDueDate" data-bs-toggle="dropdown">
                         <div class="ms-TooltipHost root-42">
                             <div class="taskCreation-labelcontainer">
-                                <div class="taskCreation-icon">
+                                <div class="taskCreation-icon" id="due-icon">
                                     <svg class="fluentIcon dateButton-icon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M7 11a1 1 0 100-2 1 1 0 000 2zm1 2a1 1 0 11-2 0 1 1 0 012 0zm2-2a1 1 0 100-2 1 1 0 000 2zm1 2a1 1 0 11-2 0 1 1 0 012 0zm2-2a1 1 0 100-2 1 1 0 000 2zm4-5.5A2.5 2.5 0 0014.5 3h-9A2.5 2.5 0 003 5.5v9A2.5 2.5 0 005.5 17h9a2.5 2.5 0 002.5-2.5v-9zM4 7h12v7.5c0 .83-.67 1.5-1.5 1.5h-9A1.5 1.5 0 014 14.5V7zm1.5-3h9c.83 0 1.5.67 1.5 1.5V6H4v-.5C4 4.67 4.67 4 5.5 4z" fill="currentColor"></path>
                                     </svg>
+                                </div>
+                                <div class="dueDate-selected" style="display: none">
+                                    <div class="me-2">
+                                        <svg class="fluentIcon dateButton-icon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7 11a1 1 0 100-2 1 1 0 000 2zm1 2a1 1 0 11-2 0 1 1 0 012 0zm2-2a1 1 0 100-2 1 1 0 000 2zm1 2a1 1 0 11-2 0 1 1 0 012 0zm2-2a1 1 0 100-2 1 1 0 000 2zm4-5.5A2.5 2.5 0 0014.5 3h-9A2.5 2.5 0 003 5.5v9A2.5 2.5 0 005.5 17h9a2.5 2.5 0 002.5-2.5v-9zM4 7h12v7.5c0 .83-.67 1.5-1.5 1.5h-9A1.5 1.5 0 014 14.5V7zm1.5-3h9c.83 0 1.5.67 1.5 1.5V6H4v-.5C4 4.67 4.67 4 5.5 4z" fill="currentColor"></path>
+                                        </svg>
+                                    </div>
+                                    <span id="dueDate-label"></span>
+                                    <input type="hidden" name="dueDate-selected" value="">
                                 </div>
                             </div>
                         </div>
@@ -67,6 +76,7 @@
                         <div class="dropdown-choose">
                             <table class="table table-borderless mb-0 bg-white">
                                 <tr class="cus-nav-item">
+                                    <input type="hidden" value="today" name="dueDate">
                                     <td>
                                         <div class="due-icon">
                                             <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" focusable="false">
@@ -78,10 +88,11 @@
                                         <span>Today</span>
                                     </td>
                                     <td class="text-end text-secondary">
-                                        <span>Wed</span>
+                                        <span class="today-lb"></span>
                                     </td>
                                 </tr>
                                 <tr class="cus-nav-item">
+                                    <input type="hidden" value="tomorrow" name="dueDate">
                                     <td>
                                         <div class="due-icon">
                                             <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" focusable="false">
@@ -93,10 +104,11 @@
                                         <span>Tomorrow</span>
                                     </td>
                                     <td class="text-end text-secondary">
-                                        <span>Thu</span>
+                                        <span class="tomorrow-lb"></span>
                                     </td>
                                 </tr>
                                 <tr class="cus-nav-item">
+                                    <input type="hidden" value="next-week" name="dueDate">
                                     <td>
                                         <div class="due-icon">
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
@@ -120,7 +132,23 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <span>Pick a date</span>
+                                        <span>
+                                            <input type="datetime" value="" class="datepicker" id="dueDate-picker" placeholder="Pick a date">
+                                        </span>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr class="border-top cus-nav-item rm-due" style="display: none">
+                                    <input type="hidden" value="" name="dueDate">
+                                    <td>
+                                        <div class="due-icon">
+                                            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M21.5 6a1 1 0 0 1-.883.993L20.5 7h-.845l-1.231 12.52A2.75 2.75 0 0 1 15.687 22H8.313a2.75 2.75 0 0 1-2.737-2.48L4.345 7H3.5a1 1 0 0 1 0-2h5a3.5 3.5 0 1 1 7 0h5a1 1 0 0 1 1 1Zm-7.25 3.25a.75.75 0 0 0-.743.648L13.5 10v7l.007.102a.75.75 0 0 0 1.486 0L15 17v-7l-.007-.102a.75.75 0 0 0-.743-.648Zm-4.5 0a.75.75 0 0 0-.743.648L9 10v7l.007.102a.75.75 0 0 0 1.486 0L10.5 17v-7l-.007-.102a.75.75 0 0 0-.743-.648ZM12 3.5A1.5 1.5 0 0 0 10.5 5h3A1.5 1.5 0 0 0 12 3.5Z" fill="#E84B3C"/>
+                                            </svg>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="text-danger">Remove due date</span>
                                     </td>
                                     <td></td>
                                 </tr>
@@ -313,6 +341,15 @@
 @endsection
 @section('scripts')
     <script type="module">
+        //init datetime
+        let date = moment()
+        $(".today-lb").text(date.format("ddd"))
+        $(".tomorrow-lb").text(date.add(1, 'days').format("ddd"))
+        let config = {
+            enableTime: true,
+            dateFormat: "Y-m-d H:i",
+        }
+        flatpickr(".datepicker", config);
         $("#formAddTodo").on('submit', function(e){
             e.preventDefault();
             let name = $("#todo_name").val()
@@ -349,6 +386,43 @@
                     }
                 }
             })
+        })
+        $(".cus-nav-item").click(function(e) {
+            $("#due-icon").hide()
+            $(".dueDate-selected").show()
+
+            let dueDate = $(this).find('input[name="dueDate"]').val()
+            let date = moment()
+            
+            switch(dueDate) {
+                case "today":
+                    dueDate = date.format("YYYY-MM-DD") + " 23:59"
+                    break;
+                case "tomorrow":
+                    dueDate = date.add(1, 'days').format("YYYY-MM-DD") + " 23:59"
+                    break;
+                case "next-week":
+                    dueDate = date.add(1, 'weeks').weekday(1).format("YYYY-MM-DD") + " 23:59"
+                    break;
+                default:
+            }
+            $("#dueDate-label").text(dueDate)
+            $("input[name='dueDate-selected']").val(dueDate)
+        })
+        $(".datepicker").change(function(e) {
+            let dueDate = $(this).val();
+            $("#dueDate-label").text(dueDate)
+            $("input[name='dueDate-selected']").val(dueDate)
+        })
+        $(".dueDate-selected").click(function(e){
+            $(".rm-due").show()
+        })
+        $(".rm-due").click(function(){
+            $("#due-icon").show();
+            $(".dueDate-selected").hide();
+            $("input[name='dueDate-selected']").val("")
+            $("#dueDate-picker").val("")
+            $(this).hide()
         })
     </script>
 @endsection
