@@ -139,10 +139,11 @@
             }
         }
         .baseAdd-button.taskcreation {
+            color: #2564cf;
             margin-left: auto;
             right: 0;
             background-color: #fff;
-            border: solid 1px #e1dfdd;
+            border: solid 1px #2564cf;
             width: auto;
             font-size: 0.8rem;
             font-weight: bold;
@@ -249,7 +250,7 @@
                 }
             }
         }
-        .dueDate-selected{
+        .dueDate-selected, .reminder-selected, .repeat-selected{
             display: flex;
             justify-content: center;
             padding: 0px 5px;

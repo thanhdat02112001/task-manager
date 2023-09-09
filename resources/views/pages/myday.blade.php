@@ -58,14 +58,14 @@
                                         <path d="M7 11a1 1 0 100-2 1 1 0 000 2zm1 2a1 1 0 11-2 0 1 1 0 012 0zm2-2a1 1 0 100-2 1 1 0 000 2zm1 2a1 1 0 11-2 0 1 1 0 012 0zm2-2a1 1 0 100-2 1 1 0 000 2zm4-5.5A2.5 2.5 0 0014.5 3h-9A2.5 2.5 0 003 5.5v9A2.5 2.5 0 005.5 17h9a2.5 2.5 0 002.5-2.5v-9zM4 7h12v7.5c0 .83-.67 1.5-1.5 1.5h-9A1.5 1.5 0 014 14.5V7zm1.5-3h9c.83 0 1.5.67 1.5 1.5V6H4v-.5C4 4.67 4.67 4 5.5 4z" fill="currentColor"></path>
                                     </svg>
                                 </div>
-                                <div class="dueDate-selected" style="display: none">
+                                <div class="dueDate-selected taskCreation-selected" style="display: none">
                                     <div class="me-2">
                                         <svg class="fluentIcon dateButton-icon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M7 11a1 1 0 100-2 1 1 0 000 2zm1 2a1 1 0 11-2 0 1 1 0 012 0zm2-2a1 1 0 100-2 1 1 0 000 2zm1 2a1 1 0 11-2 0 1 1 0 012 0zm2-2a1 1 0 100-2 1 1 0 000 2zm4-5.5A2.5 2.5 0 0014.5 3h-9A2.5 2.5 0 003 5.5v9A2.5 2.5 0 005.5 17h9a2.5 2.5 0 002.5-2.5v-9zM4 7h12v7.5c0 .83-.67 1.5-1.5 1.5h-9A1.5 1.5 0 014 14.5V7zm1.5-3h9c.83 0 1.5.67 1.5 1.5V6H4v-.5C4 4.67 4.67 4 5.5 4z" fill="currentColor"></path>
                                         </svg>
                                     </div>
                                     <span id="dueDate-label"></span>
-                                    <input type="hidden" name="dueDate-selected" value="">
+                                    <input type="hidden" name="dueDate-selected" class="taskCreation-value" value="">
                                 </div>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                         <li><hr class="dropdown-divider"></li>
                         <div class="dropdown-choose">
                             <table class="table table-borderless mb-0 bg-white">
-                                <tr class="cus-nav-item">
+                                <tr class="cus-nav-item due-nav-item">
                                     <input type="hidden" value="today" name="dueDate">
                                     <td>
                                         <div class="due-icon">
@@ -91,7 +91,7 @@
                                         <span class="today-lb"></span>
                                     </td>
                                 </tr>
-                                <tr class="cus-nav-item">
+                                <tr class="cus-nav-item due-nav-item">
                                     <input type="hidden" value="tomorrow" name="dueDate">
                                     <td>
                                         <div class="due-icon">
@@ -107,7 +107,7 @@
                                         <span class="tomorrow-lb"></span>
                                     </td>
                                 </tr>
-                                <tr class="cus-nav-item">
+                                <tr class="cus-nav-item due-nav-item">
                                     <input type="hidden" value="next-week" name="dueDate">
                                     <td>
                                         <div class="due-icon">
@@ -123,7 +123,7 @@
                                         <span>Mon</span>
                                     </td>
                                 </tr>
-                                <tr class="border-top cus-nav-item">
+                                <tr class="border-top cus-nav-item due-nav-item">
                                     <td>
                                         <div class="due-icon">
                                             <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" focusable="false">
@@ -139,7 +139,6 @@
                                     <td></td>
                                 </tr>
                                 <tr class="border-top cus-nav-item rm-due" style="display: none">
-                                    <input type="hidden" value="" name="dueDate">
                                     <td>
                                         <div class="due-icon">
                                             <svg width="20" height="20" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -162,10 +161,19 @@
                         <div>
                             <div class="ms-TooltipHost root-42">
                                 <div class="taskCreation-labelcontainer">
-                                    <div class="taskCreation-icon">
+                                    <div class="taskCreation-icon" id="reminder-icon">
                                         <svg class="fluentIcon reminderButton-icon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M10 2a5.92 5.92 0 015.98 5.36l.02.22V11.4l.92 2.22a1 1 0 01.06.17l.01.08.01.13a1 1 0 01-.75.97l-.11.02L16 15h-3.5v.17a2.5 2.5 0 01-5 0V15H4a1 1 0 01-.26-.03l-.13-.04a1 1 0 01-.6-1.05l.02-.13.05-.13L4 11.4V7.57A5.9 5.9 0 0110 2zm1.5 13h-3v.15a1.5 1.5 0 001.36 1.34l.14.01c.78 0 1.42-.6 1.5-1.36V15zM10 3a4.9 4.9 0 00-4.98 4.38L5 7.6V11.5l-.04.2L4 14h12l-.96-2.3-.04-.2V7.61A4.9 4.9 0 0010 3z" fill="currentColor"></path>
                                         </svg>
+                                    </div>
+                                    <div class="reminder-selected taskCreation-selected" style="display: none">
+                                        <div class="me-2">
+                                            <svg class="fluentIcon reminderButton-icon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M10 2a5.92 5.92 0 015.98 5.36l.02.22V11.4l.92 2.22a1 1 0 01.06.17l.01.08.01.13a1 1 0 01-.75.97l-.11.02L16 15h-3.5v.17a2.5 2.5 0 01-5 0V15H4a1 1 0 01-.26-.03l-.13-.04a1 1 0 01-.6-1.05l.02-.13.05-.13L4 11.4V7.57A5.9 5.9 0 0110 2zm1.5 13h-3v.15a1.5 1.5 0 001.36 1.34l.14.01c.78 0 1.42-.6 1.5-1.36V15zM10 3a4.9 4.9 0 00-4.98 4.38L5 7.6V11.5l-.04.2L4 14h12l-.96-2.3-.04-.2V7.61A4.9 4.9 0 0010 3z" fill="currentColor"></path>
+                                            </svg>
+                                        </div>
+                                        <span id="reminder-label"></span>
+                                        <input type="hidden" name="reminder-selected" class="taskCreation-value" value="">
                                     </div>
                                 </div>
                             </div>
@@ -176,7 +184,8 @@
                         <li><hr class="dropdown-divider"></li>
                         <div class="dropdown-choose">
                             <table class="table table-borderless mb-0 bg-white">
-                                <tr class="cus-nav-item">
+                                <tr class="cus-nav-item reminder-nav-item">
+                                    <input type="hidden" name="reminderDate" value="today">
                                     <td>
                                         <div class="due-icon">
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
@@ -188,10 +197,11 @@
                                         <span>Later today</span>
                                     </td>
                                     <td class="text-end text-secondary">
-                                        <span>2:00 PM</span>
+                                        <span id="reminder-today-lb"></span>
                                     </td>
                                 </tr>
-                                <tr class="cus-nav-item">
+                                <tr class="cus-nav-item reminder-nav-item">
+                                    <input type="hidden" name="reminderDate" value="tomorrow">
                                     <td>
                                         <div class="due-icon">
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
@@ -203,10 +213,11 @@
                                         <span>Tomorrow</span>
                                     </td>
                                     <td class="text-end text-secondary">
-                                        <span>Fri, 9 AM</span>
+                                        <span id="reminder-tomorrow-lb"></span>
                                     </td>
                                 </tr>
-                                <tr class="cus-nav-item">
+                                <tr class="cus-nav-item reminder-nav-item">
+                                    <input type="hidden" name="reminderDate" value="next-week">
                                     <td>
                                         <div class="due-icon">
                                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" focusable="false">
@@ -218,10 +229,10 @@
                                         <span>Next week</span>
                                     </td>
                                     <td class="text-end text-secondary">
-                                        <span>Mon, 9 AM</span>
+                                        <span id="reminder-nextweek-lb"></span>
                                     </td>
                                 </tr>
-                                <tr class="border-top cus-nav-item">
+                                <tr class="border-top cus-nav-item reminder-nav-item">
                                     <td>
                                         <div class="due-icon">
                                             <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" focusable="false">
@@ -230,7 +241,20 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <span>Pick a date & time</span>
+                                        <span><input type="datetime" value="" class="datepicker" id="reminder-picker" placeholder="Pick a date & time"></span>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr class="border-top cus-nav-item rm-reminder" style="display: none">
+                                    <td>
+                                        <div class="due-icon">
+                                            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M21.5 6a1 1 0 0 1-.883.993L20.5 7h-.845l-1.231 12.52A2.75 2.75 0 0 1 15.687 22H8.313a2.75 2.75 0 0 1-2.737-2.48L4.345 7H3.5a1 1 0 0 1 0-2h5a3.5 3.5 0 1 1 7 0h5a1 1 0 0 1 1 1Zm-7.25 3.25a.75.75 0 0 0-.743.648L13.5 10v7l.007.102a.75.75 0 0 0 1.486 0L15 17v-7l-.007-.102a.75.75 0 0 0-.743-.648Zm-4.5 0a.75.75 0 0 0-.743.648L9 10v7l.007.102a.75.75 0 0 0 1.486 0L10.5 17v-7l-.007-.102a.75.75 0 0 0-.743-.648ZM12 3.5A1.5 1.5 0 0 0 10.5 5h3A1.5 1.5 0 0 0 12 3.5Z" fill="#E84B3C"/>
+                                            </svg>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="text-danger">Remove reminder</span>
                                     </td>
                                     <td></td>
                                 </tr>
@@ -244,10 +268,19 @@
                         <div>
                             <div class="ms-TooltipHost root-42">
                                 <div class="taskCreation-labelcontainer">
-                                    <div class="taskCreation-icon">
+                                    <div class="taskCreation-icon" id="repeat-icon">
                                         <svg class="fluentIcon recurringButton-icon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M16.5 6.67a.5.5 0 01.3.1l.08.07.01.02A5 5 0 0113.22 15L13 15H6.7l1.65 1.65c.18.17.2.44.06.63l-.06.07a.5.5 0 01-.63.06l-.07-.06-2.5-2.5a.5.5 0 01-.06-.63l.06-.07 2.5-2.5a.5.5 0 01.76.63l-.06.07L6.72 14h.14L7 14h6a4 4 0 003.11-6.52.5.5 0 01.39-.81zm-4.85-4.02a.5.5 0 01.63-.06l.07.06 2.5 2.5.06.07a.5.5 0 010 .56l-.06.07-2.5 2.5-.07.06a.5.5 0 01-.56 0l-.07-.06-.06-.07a.5.5 0 010-.56l.06-.07L13.28 6h-.14L13 6H7a4 4 0 00-3.1 6.52c.06.09.1.2.1.31a.5.5 0 01-.9.3A4.99 4.99 0 016.77 5h6.52l-1.65-1.65-.06-.07a.5.5 0 01.06-.63z" fill="currentColor"></path>
                                         </svg>
+                                    </div>
+                                    <div class="repeat-selected taskCreation-selected" style="display: none">
+                                        <div class="me-2">
+                                            <svg class="fluentIcon recurringButton-icon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M16.5 6.67a.5.5 0 01.3.1l.08.07.01.02A5 5 0 0113.22 15L13 15H6.7l1.65 1.65c.18.17.2.44.06.63l-.06.07a.5.5 0 01-.63.06l-.07-.06-2.5-2.5a.5.5 0 01-.06-.63l.06-.07 2.5-2.5a.5.5 0 01.76.63l-.06.07L6.72 14h.14L7 14h6a4 4 0 003.11-6.52.5.5 0 01.39-.81zm-4.85-4.02a.5.5 0 01.63-.06l.07.06 2.5 2.5.06.07a.5.5 0 010 .56l-.06.07-2.5 2.5-.07.06a.5.5 0 01-.56 0l-.07-.06-.06-.07a.5.5 0 010-.56l.06-.07L13.28 6h-.14L13 6H7a4 4 0 00-3.1 6.52c.06.09.1.2.1.31a.5.5 0 01-.9.3A4.99 4.99 0 016.77 5h6.52l-1.65-1.65-.06-.07a.5.5 0 01.06-.63z" fill="currentColor"></path>
+                                            </svg>
+                                        </div>
+                                        <span id="repeat-label"></span>
+                                        <input type="hidden" name="repeat-selected" class="taskCreation-value" value="0">
                                     </div>
                                 </div>
                             </div>
@@ -258,7 +291,8 @@
                         <li><hr class="dropdown-divider"></li>
                         <div class="dropdown-choose">
                             <table class="table table-borderless mb-0 bg-white">
-                                <tr class="cus-nav-item">
+                                <tr class="cus-nav-item repeat-nav-item">
+                                    <input type="hidden" name="repeatType" value="1">
                                     <td>
                                         <div class="due-icon">
                                             <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" focusable="false">
@@ -271,7 +305,8 @@
                                     </td>
                                     <td></td>
                                 </tr>
-                                <tr class="cus-nav-item">
+                                <tr class="cus-nav-item repeat-nav-item">
+                                    <input type="hidden" name="repeatType" value="2">
                                     <td>
                                         <div class="due-icon">
                                             <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" focusable="false">
@@ -284,7 +319,8 @@
                                     </td>
                                     <td></td>
                                 </tr>
-                                <tr class="cus-nav-item">
+                                <tr class="cus-nav-item repeat-nav-item">
+                                    <input type="hidden" name="repeatType" value="3">
                                     <td>
                                         <div class="due-icon">
                                             <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" focusable="false">
@@ -297,16 +333,16 @@
                                     </td>
                                     <td></td>
                                 </tr>
-                                <tr class="border-top cus-nav-item">
+                                <tr class="border-top cus-nav-item rm-repeat" style="display: none">
                                     <td>
                                         <div class="due-icon">
-                                            <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" focusable="false">
-                                                <path d="M17 5.5A2.5 2.5 0 0014.5 3h-9A2.5 2.5 0 003 5.5v9A2.5 2.5 0 005.5 17h4.1c-.16-.32-.3-.65-.4-1H5.5A1.5 1.5 0 014 14.5V7h12v2.2c.35.1.68.24 1 .4V5.5zM5.5 4h9c.83 0 1.5.67 1.5 1.5V6H4v-.5C4 4.67 4.67 4 5.5 4zm9 15a4.5 4.5 0 100-9 4.5 4.5 0 000 9zm-.5-6.5a.5.5 0 011 0V14h1a.5.5 0 010 1h-1.5a.5.5 0 01-.5-.5v-2z" fill="currentColor"></path>
+                                            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M21.5 6a1 1 0 0 1-.883.993L20.5 7h-.845l-1.231 12.52A2.75 2.75 0 0 1 15.687 22H8.313a2.75 2.75 0 0 1-2.737-2.48L4.345 7H3.5a1 1 0 0 1 0-2h5a3.5 3.5 0 1 1 7 0h5a1 1 0 0 1 1 1Zm-7.25 3.25a.75.75 0 0 0-.743.648L13.5 10v7l.007.102a.75.75 0 0 0 1.486 0L15 17v-7l-.007-.102a.75.75 0 0 0-.743-.648Zm-4.5 0a.75.75 0 0 0-.743.648L9 10v7l.007.102a.75.75 0 0 0 1.486 0L10.5 17v-7l-.007-.102a.75.75 0 0 0-.743-.648ZM12 3.5A1.5 1.5 0 0 0 10.5 5h3A1.5 1.5 0 0 0 12 3.5Z" fill="#E84B3C"/>
                                             </svg>
                                         </div>
                                     </td>
                                     <td>
-                                        <span>Custom</span>
+                                        <span class="text-danger">Remove repeat</span>
                                     </td>
                                     <td></td>
                                 </tr>
@@ -316,7 +352,7 @@
                     </ul>
                 </div>
             </div>
-            <button aria-label="Add" class="baseAdd-button baseAdd-disabledButton taskcreation" tabindex="-1" disabled="">Add</button>
+            <button aria-label="Add" class="baseAdd-button taskcreation" tabindex="-1">Add</button>
         </div>
         <div class="todoList mt-4" id="todoList">
             @foreach ($todos as $todo)
@@ -342,23 +378,153 @@
 @section('scripts')
     <script type="module">
         //init datetime
-        let date = moment()
-        $(".today-lb").text(date.format("ddd"))
-        $(".tomorrow-lb").text(date.add(1, 'days').format("ddd"))
+        $(".today-lb").text(moment().format("ddd"))
+        $(".tomorrow-lb").text(moment().add(1, 'days').format("ddd"))
+        $("#reminder-today-lb").text(moment().add(2, 'hours').format("ddd, hh:mm A"))
+        $("#reminder-tomorrow-lb").text(moment().add(1, 'day').format("ddd, hh:mm A"))
+        $("#reminder-nextweek-lb").text(moment().add(1, 'weeks').weekday(1).format("ddd, hh:mm A"))
+
         let config = {
             enableTime: true,
             dateFormat: "Y-m-d H:i",
         }
         flatpickr(".datepicker", config);
-        $("#formAddTodo").on('submit', function(e){
-            e.preventDefault();
+
+        //due-date
+        $(".due-nav-item").click(function(e) {
+            let dueDate = $(this).find('input[name="dueDate"]').val()
+            let date = moment()
+            
+            switch(dueDate) {
+                case "today":
+                    dueDate = date.endOf('day').format("YYYY-MM-DD H:m")
+                    break;
+                case "tomorrow":
+                    dueDate = date.add(1, 'days').endOf('day').format("YYYY-MM-DD H:m")
+                    break;
+                case "next-week":
+                    dueDate = date.add(1, 'weeks').weekday(1).endOf('day').format("YYYY-MM-DD H:m")
+                    break;
+                default:
+            }
+            if (dueDate != ""){
+                $("#due-icon").hide()
+                $(".dueDate-selected").show()
+                let formateDate = moment(dueDate).format('ddd, hh:mm A')
+                $("#dueDate-label").text(formateDate)
+                $("input[name='dueDate-selected']").val(dueDate)
+            }
+        })
+
+        $(".dueDate-selected").click(function(e){
+            $(".rm-due").show()
+        })
+
+        $(".rm-due").click(function(){
+            $("#due-icon").show();
+            $(".dueDate-selected").hide();
+            $("input[name='dueDate-selected']").val("")
+            $("#dueDate-picker").val("")
+            $(this).hide()
+        })
+
+        //reminder
+        $(".reminder-nav-item").click(function(e) {
+            let reminderDate = $(this).find('input[name="reminderDate"]').val()
+            let date = moment()
+            
+            switch(reminderDate) {
+                case "today":
+                    reminderDate = date.add(2, 'hours').format("YYYY-MM-DD H:m")
+                    break;
+                case "tomorrow":
+                    reminderDate = date.add(1, 'days').format("YYYY-MM-DD H:m")
+                    break;
+                case "next-week":
+                    reminderDate = date.add(1, 'weeks').weekday(1).format("YYYY-MM-DD H:m")
+                    break;
+                default:
+            }
+            if (reminderDate != ""){
+                $("#reminder-icon").hide()
+                $(".reminder-selected").show()
+                let formatDate = moment(reminderDate).format('ddd, hh:mm A')
+                $("#reminder-label").text(formatDate)
+                $("input[name='reminder-selected']").val(reminderDate)
+            }
+        })
+        $(".reminder-selected").click(function(){
+            $(".rm-reminder").show()
+        })
+        
+        $(".rm-reminder").click(function(){
+            $("#reminder-icon").show();
+            $(".reminder-selected").hide();
+            $("input[name='reminder-selected']").val("")
+            $("#reminder-picker").val("")
+            $(this).hide()
+        })
+
+        //repeat
+        $(".repeat-nav-item").click(function(e) {
+            let repeatType = $(this).find('input[name="repeatType"]').val()
+            let repeatTypeFormat = ''
+            switch(repeatType) {
+                case "1":
+                    repeatTypeFormat = "Daily"
+                    break;
+                case "2":
+                    repeatTypeFormat = "Weekly"
+                    break;
+                case "3":
+                    repeatTypeFormat = "Monthly"
+                    break;
+                default:
+            }
+            if (repeatType != ""){
+                $("#repeat-icon").hide()
+                $(".repeat-selected").show()
+                $("#repeat-label").text(repeatTypeFormat)
+                $("input[name='repeat-selected']").val(repeatType)
+            }
+        })
+        $(".repeat-selected").click(function(){
+            $(".rm-repeat").show()
+        })
+        
+        $(".rm-repeat").click(function(){
+            $("#repeat-icon").show();
+            $(".repeat-selected").hide();
+            $("input[name='repeat-selected']").val("0")
+            $(this).hide()
+        })
+
+        //datepicker
+        $(".datepicker").change(function(e) {
+            let id =  e.target.id
+            let option = id.split('-')
+            let formatDate = moment(e.target.value).format('ddd, hh:mm A')
+            $(`#${option[0]}-label`).text(formatDate)
+            $(`input[name='${option[0]}-selected']`).val(e.target.value)
+        })
+
+        // save todo
+        function saveTodo()
+        {
             let name = $("#todo_name").val()
-            let url = $(this).attr('action')
+            let url = $("#formAddTodo").attr('action')
+            let dueDate      =  $("input[name='dueDate-selected']").val(),
+                reminderTime =  $("input[name='reminder-selected']").val(),
+                repeatType   =  $("input[name='repeat-selected']").val()
+            if (repeatType == "") repeatType = 0;
             $.ajax({
                 type: 'POST',
                 url: url,
                 data: {
                     'name': name,
+                    'due_date': dueDate,
+                    'remind': reminderTime,
+                    'repeat': repeatType
                 },
                 success: function(response) {
                     if (response.code == 201) {
@@ -381,48 +547,23 @@
 
                         //reset input
                         $("#todo_name").val("")
+                        $(".taskCreation-value").val("")
+                        $(".datepicker").val("")
+                        $(".taskCreation-icon").show()
+                        $(".taskCreation-selected").hide()
                     } else {
                         alert(response.message)
                     }
                 }
             })
+        }
+        $(".baseAdd-button").click(function(e){
+            e.preventDefault()
+            saveTodo()
         })
-        $(".cus-nav-item").click(function(e) {
-            $("#due-icon").hide()
-            $(".dueDate-selected").show()
-
-            let dueDate = $(this).find('input[name="dueDate"]').val()
-            let date = moment()
-            
-            switch(dueDate) {
-                case "today":
-                    dueDate = date.format("YYYY-MM-DD") + " 23:59"
-                    break;
-                case "tomorrow":
-                    dueDate = date.add(1, 'days').format("YYYY-MM-DD") + " 23:59"
-                    break;
-                case "next-week":
-                    dueDate = date.add(1, 'weeks').weekday(1).format("YYYY-MM-DD") + " 23:59"
-                    break;
-                default:
-            }
-            $("#dueDate-label").text(dueDate)
-            $("input[name='dueDate-selected']").val(dueDate)
-        })
-        $(".datepicker").change(function(e) {
-            let dueDate = $(this).val();
-            $("#dueDate-label").text(dueDate)
-            $("input[name='dueDate-selected']").val(dueDate)
-        })
-        $(".dueDate-selected").click(function(e){
-            $(".rm-due").show()
-        })
-        $(".rm-due").click(function(){
-            $("#due-icon").show();
-            $(".dueDate-selected").hide();
-            $("input[name='dueDate-selected']").val("")
-            $("#dueDate-picker").val("")
-            $(this).hide()
+        $("#formAddTodo").on('submit', function(e){
+            e.preventDefault()
+            saveTodo()
         })
     </script>
 @endsection
