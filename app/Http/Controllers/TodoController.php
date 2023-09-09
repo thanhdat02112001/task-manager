@@ -17,6 +17,20 @@ class TodoController extends Controller
     {
         $data = $request->all();
         $newTodo = Auth::user()->todos()->create($data);
-        return response()->json(['newTodo' => $newTodo], 200);
+        if (!$newTodo) {
+            return response()->json(['message' => 'Cannot add new task', 'code' => '400']);
+        }
+        return response()->json(['newTodo' => $newTodo, 'code' => '201']);
+    }
+
+    /**
+     * Get todo
+     * 
+     * @return App\Models\Todo;
+     */
+    public function index()
+    {
+        $todos = Auth::user()->todos;
+        return view('pages.myday', compact('todos'));
     }
 }

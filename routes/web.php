@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
@@ -17,10 +18,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
-Route::get('/myday', function () {
-    return view('pages.myday');
-});
+})->name('welcome');
+
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
-Route::post('/todo/save', [TodoController::class, 'save'])->name('todo.save');
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/logout', [AuthController::class, 'logout']);
+
+    Route::post('/todo/save', [TodoController::class, 'save'])->name('todo.save');
+    Route::get('/myday', [TodoController::class, 'index'])->name('todo.index'); 
+});
+
