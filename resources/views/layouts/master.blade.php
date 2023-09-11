@@ -24,6 +24,9 @@
         <div class="centerColumn">
             @yield('content')
         </div>
+        <div class="rightColumn">
+            @include('partials.rightside')
+        </div>
     </div>
 
     {{--Scripts link to file or js custom--}}

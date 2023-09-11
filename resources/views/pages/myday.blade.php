@@ -356,7 +356,7 @@
         </div>
         <div class="todoList mt-4" id="todoList">
             @foreach ($todos as $todo)
-            <div class="todoItem">
+            <div class="todoItem" data-bs-toggle="modal" data-bs-target="#rightModal">
                 <div class="mark-done">
                     <input type="checkbox" name="mark-done" id="{{'isDone'.$todo->id}}" class="checkbox-round d-none" {{$todo->status == 1 ? "checked" : ""}}>
                     <label for="{{'isDone'.$todo->id}}" title="Mark as done"></label>
@@ -369,11 +369,11 @@
                     <input type="checkbox" id="{{'isImportant'.$todo->id}}" {{($todo->important == 1) ? "checked" : ""}} />
                     <label for="{{'isImportant'.$todo->id}}" title="Mark as important"></label>
                 </div>
-            </div>
+            </div>    
             @endforeach
         </div>
     </div>
-</div>        
+</div>      
 @endsection
 @section('scripts')
     <script type="module">
