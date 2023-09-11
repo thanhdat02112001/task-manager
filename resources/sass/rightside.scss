@@ -191,6 +191,41 @@
                 background-color: #fff;
             }
         }
-      }
+    }
+    .add-step {
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        min-height: 52px;
+        padding: 0px 10px;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        .custom-input {
+            border: none;
+            outline: none;
+            background-color: transparent;
+           &:focus{
+            border: none;
+           }
+           &::placeholder {
+            color: #2564cf
+           }
+        }
+    }
+  }
+  .details-options {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    button {
+        outline: none;
+        background-color: transparent;
+        border: none;
+        display: flex;
+        align-items: center;
+        .due-icon {
+            padding:  5px 16px;
+        }
+    }
   }
 }
