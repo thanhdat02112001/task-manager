@@ -18,4 +18,12 @@ class Todo extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * One todo has many steps
+     */
+    public function steps()
+    {
+        return $this->hasMany(Step::class);
+    }
 }

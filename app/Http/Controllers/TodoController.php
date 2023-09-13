@@ -33,4 +33,15 @@ class TodoController extends Controller
         $todos = Auth::user()->todos;
         return view('pages.myday', compact('todos'));
     }
+
+    /**
+     * Get detail todo
+     * 
+     * @return App\Models\Todo;
+     */
+    public function show($id)
+    {
+        $todo = Auth::user()->todos()->with('steps')->find($id);
+        return response()->json(['todo' => $todo, 'code' => '201']);
+    }
 }
