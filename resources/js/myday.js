@@ -198,17 +198,32 @@
             $(".todo-title-detail").text(todo.name)
             $("#isDone-detail").prop("checked", todo.status == 1)
             $("#isImportant-detail").prop("checked", todo.important == 1)
+            $("#dueDate-label-detail").text(todo.due_date ? todo.due_date : "Add due date")
+            $("#reminder-label-detail").text(todo.remind ? todo.remind : "Remind me")
+            switch(todo.repeat) {
+                case 1:
+                    $("#repeat-label-detail").text("Daily")
+                    break;
+                case 2:
+                    $("#repeat-label-detail").text("Weekly")
+                    break;
+                case 3:
+                    $("#repeat-label-detail").text("Monthly")
+                    break;
+                default:
+                    $("#repeat-label-detail").text("Repeat")
+                    break;
+            }
             if ( steps.length > 0 ) {
                 $(".steps").css('display', 'flex');
                 let html = ``
                 steps.map((step) => {
-                    console.log(step.status)
                     html += `<div class="mark-done">
                             <input type="checkbox" name="mark-done" id="stepDone" class="checkbox-round d-none" ${step.status == 1 ? "checked" : ""}>
                             <label for="stepDone" title="Mark as done"></label>
                         </div>
                         <div class="steps-content">
-                            <span class="step-title">Step 1</span>
+                            <span class="step-title">${step.content}</span>
                         </div>
                         <div class="rm-step">
                             <button>
