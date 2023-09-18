@@ -44,7 +44,7 @@
           <li><hr class="dropdown-divider"></li>
           <div class="dropdown-choose">
               <table class="table table-borderless mb-0 bg-white">
-                  <tr class="cus-nav-item due-nav-item">
+                  <tr class="cus-nav-item due-nav-item-detail">
                       <input type="hidden" value="today" name="dueDate">
                       <td>
                           <div class="due-icon">
@@ -60,7 +60,7 @@
                           <span class="today-lb"></span>
                       </td>
                   </tr>
-                  <tr class="cus-nav-item due-nav-item">
+                  <tr class="cus-nav-item due-nav-item-detail">
                       <input type="hidden" value="tomorrow" name="dueDate">
                       <td>
                           <div class="due-icon">
@@ -76,7 +76,7 @@
                           <span class="tomorrow-lb"></span>
                       </td>
                   </tr>
-                  <tr class="cus-nav-item due-nav-item">
+                  <tr class="cus-nav-item due-nav-item-detail">
                       <input type="hidden" value="next-week" name="dueDate">
                       <td>
                           <div class="due-icon">
@@ -92,7 +92,7 @@
                           <span>Mon</span>
                       </td>
                   </tr>
-                  <tr class="border-top cus-nav-item due-nav-item">
+                  <tr class="border-top cus-nav-item due-nav-item-detail">
                       <td>
                           <div class="due-icon">
                               <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" focusable="false">
@@ -102,12 +102,12 @@
                       </td>
                       <td>
                           <span>
-                              <input type="datetime" value="" class="datepicker" id="dueDate-picker" placeholder="Pick a date">
+                              <input type="datetime" value="" class="datepicker-detail" id="dueDate-picker" placeholder="Pick a date">
                           </span>
                       </td>
                       <td></td>
                   </tr>
-                  <tr class="border-top cus-nav-item rm-due" style="display: none">
+                  <tr class="border-top cus-nav-item rm-due-detail" style="display: none">
                       <td>
                           <div class="due-icon">
                               <svg width="20" height="20" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -197,7 +197,7 @@
                           </div>
                       </td>
                       <td>
-                          <span><input type="datetime" value="" class="datepicker" id="reminder-picker" placeholder="Pick a date & time"></span>
+                          <span><input type="datetime" value="" class="datepicker-detail" id="reminder-picker" placeholder="Pick a date & time"></span>
                       </td>
                       <td></td>
                   </tr>

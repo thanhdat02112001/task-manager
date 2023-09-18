@@ -10,7 +10,7 @@
      dateFormat: "Y-m-d H:i",
  }
  flatpickr(".datepicker", config);
-
+ flatpickr(".datepicker-detail", config);
  //due-date
  $(".due-nav-item").click(function(e) {
      let dueDate = $(this).find('input[name="dueDate"]').val()
@@ -48,6 +48,41 @@
      $("#dueDate-picker").val("")
      $(this).hide()
  })
+
+ $(".due-nav-item-detail").click(function(e) {
+    let dueDate = $(this).find('input[name="dueDate"]').val()
+    let date = moment()
+    
+    switch(dueDate) {
+        case "today":
+            dueDate = date.endOf('day').format("YYYY-MM-DD H:m")
+            break;
+        case "tomorrow":
+            dueDate = date.add(1, 'days').endOf('day').format("YYYY-MM-DD H:m")
+            break;
+        case "next-week":
+            dueDate = date.add(1, 'weeks').weekday(1).endOf('day').format("YYYY-MM-DD H:m")
+            break;
+        default:
+    }
+    if (dueDate != ""){
+        let formateDate = moment(dueDate).format('ddd, hh:mm A')
+        $("#dueDate-label-detail").text(formateDate)
+        $("input[name='dueDate-selected-detail']").val(dueDate)
+    }
+})
+$("#dueDate-label-detail").click(function(e){
+    if ($("input[name='dueDate-selected-detail']").val() != "") {
+        $(".rm-due-detail").show()
+    }
+})
+
+$(".rm-due-detail").click(function(){
+    $("#dueDate-label-detail").text("Add due date")
+    $("input[name='dueDate-selected-detail']").val("")
+    $("#dueDate-picker-detail").val("")
+    $(this).hide()
+})
 
  //reminder
  $(".reminder-nav-item").click(function(e) {
@@ -128,6 +163,13 @@
      $(`#${option[0]}-label`).text(formatDate)
      $(`input[name='${option[0]}-selected']`).val(e.target.value)
  })
+ $(".datepicker-detail").change(function(e) {
+    let id =  e.target.id
+    let option = id.split('-')
+    let formatDate = moment(e.target.value).format('ddd, hh:mm A')
+    $(`#${option[0]}-label-detail`).text(formatDate)
+    $(`input[name='${option[0]}-selected-detail']`).val(e.target.value)
+})
 
  // save todo
  function saveTodo()
@@ -199,6 +241,7 @@
             $("#isDone-detail").prop("checked", todo.status == 1)
             $("#isImportant-detail").prop("checked", todo.important == 1)
             $("#dueDate-label-detail").text(todo.due_date ? todo.due_date : "Add due date")
+            $("input[name='dueDate-selected-detail']").val(todo.due_date ? todo.due_date : "")
             $("#reminder-label-detail").text(todo.remind ? todo.remind : "Remind me")
             switch(todo.repeat) {
                 case 1:
@@ -216,6 +259,7 @@
             }
             if ( steps.length > 0 ) {
                 $(".steps").css('display', 'flex');
+                $(".steps").empty();
                 let html = ``
                 steps.map((step) => {
                     html += `<div class="mark-done">
