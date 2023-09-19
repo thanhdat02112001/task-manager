@@ -17,7 +17,7 @@
     <div class="steps">
     </div>
     <div class="add-step">
-      <form action="" class="w-100" id="formAddStep">
+      <form action="{{route('step.save')}}" class="w-100" id="formAddStep">
         <div class="input-group">
             <div class="input-group-prepend">
             <div class="input-group-text custom-input">
@@ -25,6 +25,7 @@
             </div>
             </div>
             <input type="text" class="custom-input mt-2 addStep" id="todo_step" placeholder="Next Step">
+            <input type="hidden" name="todo-id" value="">
         </div>
       </form>
     </div>
@@ -294,18 +295,11 @@
         </ul>
       </div>
     </div>
-    <div class="add-category mt-2">
-      <button>
-        <div class="due-icon">
-          <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path d="M14 7a1 1 0 100-2 1 1 0 000 2zm-2.87-5a2 2 0 00-1.43.58L3.02 9.25a2 2 0 000 2.83l4.95 4.95a2 2 0 002.83 0l6.63-6.63A2 2 0 0018 8.98V4.03a2 2 0 00-1.99-2L11.12 2zm-.72 1.3a1 1 0 01.71-.3l4.9.03a1 1 0 01.99 1v4.95a1 1 0 01-.29.7l-6.63 6.64a1 1 0 01-1.41 0l-4.95-4.95a1 1 0 010-1.41l6.68-6.67z" fill="currentColor"></path>
-          </svg>
-        </div>
-        <span>Pick a category</span>
-      </button>
-    </div>
     <div class="add-description mt-2 px-4 pt-4">
-        <textarea name="" id="" rows="5" placeholder="Add note"></textarea>  
+        <textarea name="" id="task-note" rows="5" placeholder="Add note"></textarea>  
+    </div>
+    <div class="mt-5">
+        <button class="btn btn-primary w-100 update-task">Save change</button>   
     </div>  
   </div>
   <div class="detail-footer">
@@ -314,7 +308,7 @@
         <path d="M9.18 10.5l-1 .87a.5.5 0 10.66.76l2-1.75a.5.5 0 000-.76l-2-1.75a.5.5 0 10-.66.76l1 .87H5.5a.5.5 0 000 1h3.68zM16 16a2 2 0 002-2V6a2 2 0 00-2-2H4a2 2 0 00-2 2v8c0 1.1.9 2 2 2h12zm1-2a1 1 0 01-1 1h-3V5h3a1 1 0 011 1v8zm-5-9v10H4a1 1 0 01-1-1V6a1 1 0 011-1h8z" fill="currentColor"></path>
       </svg>
     </div>
-    <span>Create on Thu, September 7</span>
+    <span class="task-created-at"></span>
     <div class="icon-rm-task">
       <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path d="M8.5 4h3a1.5 1.5 0 00-3 0zm-1 0a2.5 2.5 0 015 0h5a.5.5 0 010 1h-1.05l-1.2 10.34A3 3 0 0112.27 18H7.73a3 3 0 01-2.98-2.66L3.55 5H2.5a.5.5 0 010-1h5zM5.74 15.23A2 2 0 007.73 17h4.54a2 2 0 001.99-1.77L15.44 5H4.56l1.18 10.23zM8.5 7.5c.28 0 .5.22.5.5v6a.5.5 0 01-1 0V8c0-.28.22-.5.5-.5zM12 8a.5.5 0 00-1 0v6a.5.5 0 001 0V8z" fill="currentColor"></path>

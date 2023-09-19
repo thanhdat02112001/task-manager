@@ -9,7 +9,7 @@ class Todo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'user_id', 'due_date', 'remind', 'repeat', 'status', 'important'];
+    protected $fillable = ['name', 'user_id', 'due_date', 'remind', 'repeat', 'status', 'important', 'note'];
 
     /**
      * Belong to relationship

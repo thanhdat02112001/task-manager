@@ -44,4 +44,34 @@ class TodoController extends Controller
         $todo = Auth::user()->todos()->with('steps')->find($id);
         return response()->json(['todo' => $todo, 'code' => '201']);
     }
+
+    /**
+     * Update todo
+     * 
+     * @return App\Models\Todo;
+     */
+    public function update(Request $request, $id)
+    {
+        $todo = Todo::find($id);
+        if ($todo) {
+            $todo->update($request->all());
+            return response()->json(['updatedTodo' => $todo, 'code' => '201']);
+        }
+        return response()->json(['message' => 'Cannot update todo', 'code' => '400']);
+    }
+
+    /**
+     * Remove todo
+     * 
+     * @return response
+     */
+    public function delete($id)
+    {
+        $todo = Todo::find($id);
+        if ($todo) {
+            $todo->delete();
+            return response()->json(['message' => 'Delete task success!', 'code' => '201']);
+        }
+        return response()->json(['message' => 'Cannot delete task', 'code' => '400']);
+    }
 }

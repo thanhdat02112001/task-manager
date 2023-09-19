@@ -143,10 +143,10 @@
       }
       .steps {
         align-items: center;
+        flex-direction: column;
         justify-content: space-around;
         border-radius: 4px;
         padding: 0px 6px;
-        min-height: 52px;
         background-color: #fff;
         display: none;
         .mark-done {
@@ -161,7 +161,7 @@
                 height: 18px;
                 left: 0;
                 position: absolute;
-                top: 0;
+                top: 6px;
                 width: 18px;
                 &::after {
                     border: 2px solid #fff;
