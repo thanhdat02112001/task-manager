@@ -140,7 +140,7 @@
           <li><hr class="dropdown-divider"></li>
           <div class="dropdown-choose">
               <table class="table table-borderless mb-0 bg-white">
-                  <tr class="cus-nav-item reminder-nav-item">
+                  <tr class="cus-nav-item reminder-nav-item-detail">
                       <input type="hidden" name="reminderDate" value="today">
                       <td>
                           <div class="due-icon">
@@ -156,7 +156,7 @@
                           <span id="reminder-today-lb"></span>
                       </td>
                   </tr>
-                  <tr class="cus-nav-item reminder-nav-item">
+                  <tr class="cus-nav-item reminder-nav-item-detail">
                       <input type="hidden" name="reminderDate" value="tomorrow">
                       <td>
                           <div class="due-icon">
@@ -172,7 +172,7 @@
                           <span id="reminder-tomorrow-lb"></span>
                       </td>
                   </tr>
-                  <tr class="cus-nav-item reminder-nav-item">
+                  <tr class="cus-nav-item reminder-nav-item-detail">
                       <input type="hidden" name="reminderDate" value="next-week">
                       <td>
                           <div class="due-icon">
@@ -188,7 +188,7 @@
                           <span id="reminder-nextweek-lb"></span>
                       </td>
                   </tr>
-                  <tr class="border-top cus-nav-item reminder-nav-item">
+                  <tr class="border-top cus-nav-item reminder-nav-item-detail">
                       <td>
                           <div class="due-icon">
                               <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" focusable="false">
@@ -197,11 +197,11 @@
                           </div>
                       </td>
                       <td>
-                          <span><input type="datetime" value="" class="datepicker-detail" id="reminder-picker" placeholder="Pick a date & time"></span>
+                          <span><input type="datetime" value="" class="datepicker-detail" id="reminder-picker-detail" placeholder="Pick a date & time"></span>
                       </td>
                       <td></td>
                   </tr>
-                  <tr class="border-top cus-nav-item rm-reminder" style="display: none">
+                  <tr class="border-top cus-nav-item rm-reminder-detail" style="display: none">
                       <td>
                           <div class="due-icon">
                               <svg width="20" height="20" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -233,7 +233,7 @@
           <li><hr class="dropdown-divider"></li>
           <div class="dropdown-choose">
               <table class="table table-borderless mb-0 bg-white">
-                  <tr class="cus-nav-item repeat-nav-item">
+                  <tr class="cus-nav-item repeat-nav-item-detail">
                       <input type="hidden" name="repeatType" value="1">
                       <td>
                           <div class="due-icon">
@@ -247,7 +247,7 @@
                       </td>
                       <td></td>
                   </tr>
-                  <tr class="cus-nav-item repeat-nav-item">
+                  <tr class="cus-nav-item repeat-nav-item-detail">
                       <input type="hidden" name="repeatType" value="2">
                       <td>
                           <div class="due-icon">
@@ -261,7 +261,7 @@
                       </td>
                       <td></td>
                   </tr>
-                  <tr class="cus-nav-item repeat-nav-item">
+                  <tr class="cus-nav-item repeat-nav-item-detail">
                       <input type="hidden" name="repeatType" value="3">
                       <td>
                           <div class="due-icon">
@@ -275,7 +275,7 @@
                       </td>
                       <td></td>
                   </tr>
-                  <tr class="border-top cus-nav-item rm-repeat" style="display: none">
+                  <tr class="border-top cus-nav-item rm-repeat-detail" style="display: none">
                       <td>
                           <div class="due-icon">
                               <svg width="20" height="20" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

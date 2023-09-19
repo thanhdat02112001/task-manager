@@ -14,25 +14,12 @@
  //due-date
  $(".due-nav-item").click(function(e) {
      let dueDate = $(this).find('input[name="dueDate"]').val()
-     let date = moment()
-     
-     switch(dueDate) {
-         case "today":
-             dueDate = date.endOf('day').format("YYYY-MM-DD H:m")
-             break;
-         case "tomorrow":
-             dueDate = date.add(1, 'days').endOf('day').format("YYYY-MM-DD H:m")
-             break;
-         case "next-week":
-             dueDate = date.add(1, 'weeks').weekday(1).endOf('day').format("YYYY-MM-DD H:m")
-             break;
-         default:
-     }
+     dueDate = formatDueDate(dueDate)
      if (dueDate != ""){
          $("#due-icon").hide()
          $(".dueDate-selected").show()
-         let formateDate = moment(dueDate).format('ddd, hh:mm A')
-         $("#dueDate-label").text(formateDate)
+         let formatDate = moment(dueDate).format('ddd, hh:mm A')
+         $("#dueDate-label").text(formatDate)
          $("input[name='dueDate-selected']").val(dueDate)
      }
  })
@@ -51,6 +38,27 @@
 
  $(".due-nav-item-detail").click(function(e) {
     let dueDate = $(this).find('input[name="dueDate"]').val()
+    dueDate = formatDueDate(dueDate)
+    if (dueDate != ""){
+        let formatDate = moment(dueDate).format('ddd, hh:mm A')
+        $("#dueDate-label-detail").text(formatDate)
+        $("input[name='dueDate-selected-detail']").val(dueDate)
+    }
+})
+$(".due-date").click(function(e){
+    if ($("input[name='dueDate-selected-detail']").val() != "") {
+        $(".rm-due-detail").show()
+    }
+})
+
+$(".rm-due-detail").click(function(){
+    $("#dueDate-label-detail").text("Add due date")
+    $("input[name='dueDate-selected-detail']").val("")
+    $("#dueDate-picker-detail").val("")
+    $(this).hide()
+})
+
+function formatDueDate(dueDate) {
     let date = moment()
     
     switch(dueDate) {
@@ -65,42 +73,12 @@
             break;
         default:
     }
-    if (dueDate != ""){
-        let formateDate = moment(dueDate).format('ddd, hh:mm A')
-        $("#dueDate-label-detail").text(formateDate)
-        $("input[name='dueDate-selected-detail']").val(dueDate)
-    }
-})
-$("#dueDate-label-detail").click(function(e){
-    if ($("input[name='dueDate-selected-detail']").val() != "") {
-        $(".rm-due-detail").show()
-    }
-})
-
-$(".rm-due-detail").click(function(){
-    $("#dueDate-label-detail").text("Add due date")
-    $("input[name='dueDate-selected-detail']").val("")
-    $("#dueDate-picker-detail").val("")
-    $(this).hide()
-})
-
+    return dueDate
+}
  //reminder
  $(".reminder-nav-item").click(function(e) {
      let reminderDate = $(this).find('input[name="reminderDate"]').val()
-     let date = moment()
-     
-     switch(reminderDate) {
-         case "today":
-             reminderDate = date.add(2, 'hours').format("YYYY-MM-DD H:m")
-             break;
-         case "tomorrow":
-             reminderDate = date.add(1, 'days').format("YYYY-MM-DD H:m")
-             break;
-         case "next-week":
-             reminderDate = date.add(1, 'weeks').weekday(1).format("YYYY-MM-DD H:m")
-             break;
-         default:
-     }
+     reminderDate = formatRemind(reminderDate)
      if (reminderDate != ""){
          $("#reminder-icon").hide()
          $(".reminder-selected").show()
@@ -121,22 +99,50 @@ $(".rm-due-detail").click(function(){
      $(this).hide()
  })
 
+ $(".reminder-nav-item-detail").click(function(e) {
+    let reminderDate = $(this).find('input[name="reminderDate"]').val()
+    reminderDate = formatRemind(reminderDate)
+    if (reminderDate != ""){
+        let formatDate = moment(reminderDate).format('ddd, hh:mm A')
+        $("#reminder-label-detail").text(formatDate)
+        $("input[name='reminder-selected-detail']").val(reminderDate)
+    }
+})
+$(".reminder").click(function(){
+    if ($("input[name='reminder-selected-detail']").val() != "") {
+        $(".rm-reminder-detail").show()
+    }
+})
+
+$(".rm-reminder-detail").click(function(){;
+    $("#reminder-label-detail").text("Remind me")
+    $("input[name='reminder-selected-detail']").val("")
+    $("#reminder-picker-detail").val("")
+    $(this).hide()
+})
+
+function formatRemind(reminderDate) {
+    let date = moment()
+    
+    switch(reminderDate) {
+        case "today":
+            reminderDate = date.add(2, 'hours').format("YYYY-MM-DD H:m")
+            break;
+        case "tomorrow":
+            reminderDate = date.add(1, 'days').format("YYYY-MM-DD H:m")
+            break;
+        case "next-week":
+            reminderDate = date.add(1, 'weeks').weekday(1).format("YYYY-MM-DD H:m")
+            break;
+        default:
+    }
+    return reminderDate;
+}
+
  //repeat
  $(".repeat-nav-item").click(function(e) {
      let repeatType = $(this).find('input[name="repeatType"]').val()
-     let repeatTypeFormat = ''
-     switch(repeatType) {
-         case "1":
-             repeatTypeFormat = "Daily"
-             break;
-         case "2":
-             repeatTypeFormat = "Weekly"
-             break;
-         case "3":
-             repeatTypeFormat = "Monthly"
-             break;
-         default:
-     }
+     let repeatTypeFormat = formatRepeat(repeatType)
      if (repeatType != ""){
          $("#repeat-icon").hide()
          $(".repeat-selected").show()
@@ -154,6 +160,42 @@ $(".rm-due-detail").click(function(){
      $("input[name='repeat-selected']").val("0")
      $(this).hide()
  })
+
+ $(".repeat-nav-item-detail").click(function(e) {
+    let repeatType = $(this).find('input[name="repeatType"]').val()
+    let repeatTypeFormat = formatRepeat(repeatType)
+    if (repeatType != ""){
+        $("#repeat-label-detail").text(repeatTypeFormat)
+        $("input[name='repeat-selected-detail']").val(repeatType)
+    }
+})
+function formatRepeat(repeatType) {
+    let repeatTypeFormat = ''
+    switch(repeatType) {
+        case "1":
+            repeatTypeFormat = "Daily"
+            break;
+        case "2":
+            repeatTypeFormat = "Weekly"
+            break;
+        case "3":
+            repeatTypeFormat = "Monthly"
+            break;
+        default:
+    }
+    return repeatTypeFormat
+}
+$(".repeat").click(function(){
+    if ($("input[name='repeat-selected-detail']").val() != "0") {
+        $(".rm-repeat-detail").show()
+    }
+})
+
+$(".rm-repeat-detail").click(function(){
+    $("input[name='repeat-selected-detail']").val("0")
+    $("#repeat-label-detail").text("Repeat")
+    $(this).hide()
+})
 
  //datepicker
  $(".datepicker").change(function(e) {
@@ -192,7 +234,7 @@ $(".rm-due-detail").click(function(){
          success: function(response) {
              if (response.code == 201) {
                  $("#todoList").append(`
-                     <div class="todoItem">
+                     <div class="todoItem" data-url="http://localhost/todo/${response.newTodo['id']}">
                          <div class="mark-done">
                              <input type="checkbox" name="mark-done" id="${'isDone'+response.newTodo['id']}" class="checkbox-round d-none" ${response.newTodo['status'] == 1 ? "checked" : ""}>
                              <label for="${'isDone'+response.newTodo['id']}" title="Mark as done"></label>
@@ -228,8 +270,8 @@ $(".rm-due-detail").click(function(){
      e.preventDefault()
      saveTodo()
  })
- $(".todoItem").click(function(e) {
-     $(".rightColumn").css('display', 'flex')
+ $("#todoList").on('click', '.todoItem', function() {
+    $(".rightColumn").css('display', 'flex')
      let url = $(this).data('url')
      $.ajax({
         method: 'GET',
@@ -243,6 +285,8 @@ $(".rm-due-detail").click(function(){
             $("#dueDate-label-detail").text(todo.due_date ? todo.due_date : "Add due date")
             $("input[name='dueDate-selected-detail']").val(todo.due_date ? todo.due_date : "")
             $("#reminder-label-detail").text(todo.remind ? todo.remind : "Remind me")
+            $("input[name='reminder-selected-detail']").val(todo.remind ? todo.remind : "")
+            $("input[name='repeat-selected-detail']").val(todo.repeat)
             switch(todo.repeat) {
                 case 1:
                     $("#repeat-label-detail").text("Daily")
@@ -255,6 +299,7 @@ $(".rm-due-detail").click(function(){
                     break;
                 default:
                     $("#repeat-label-detail").text("Repeat")
+                    $("input[name='repeat-selected-detail']").val(0)
                     break;
             }
             if ( steps.length > 0 ) {
