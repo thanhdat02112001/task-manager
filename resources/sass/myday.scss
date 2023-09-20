@@ -230,12 +230,6 @@
                 input:checked ~ label:before {
                     color: #2564cf;
                 }
-                label:hover ~ label:before {
-                    color: #2564cf;
-                }
-                label:hover:before {
-                    color: #2564cf;
-                }
             }
             .todo-content {
                 width: calc(100% - 120px);
@@ -265,6 +259,23 @@
             padding: 0px;
             &::placeholder {
                 color:#212529;
+            }
+        }
+        .completeList {
+            padding: 10px 0px;
+            border-bottom: 1px solid #cbc9c9;
+            button {
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                flex-direction: row;
+                border: none;
+                outline: none;
+                background-color: transparent;
+                width: 100%;
+            }
+            .completedList {
+                display: none;
             }
         }
     }

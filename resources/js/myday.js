@@ -234,17 +234,17 @@ $(".rm-repeat-detail").click(function(){
          success: function(response) {
              if (response.code == 201) {
                  $("#todoList").append(`
-                     <div class="todoItem" data-url="http://localhost/todo/${response.newTodo['id']}">
+                     <div class="todoItem">
                          <div class="mark-done">
-                             <input type="checkbox" name="mark-done" id="${'isDone'+response.newTodo['id']}" class="checkbox-round d-none" ${response.newTodo['status'] == 1 ? "checked" : ""}>
+                             <input type="checkbox" name="mark-done" id="${'isDone'+response.newTodo['id']}" class="checkbox-round d-none doneTask" ${response.newTodo['status'] == 1 ? "checked" : ""}>
                              <label for="${'isDone'+response.newTodo['id']}" title="Mark as done"></label>
                          </div>
-                         <div class="todo-content">
+                         <div class="todo-content" data-url="http://localhost/todo/${response.newTodo['id']}">
                              <span class="todo-title">${response.newTodo['name']}</span>
                              <span class="text-secondary tag">Tasks</span>
                          </div>
                          <div class="mark-important">
-                             <input type="checkbox" id="${'isImportant'+response.newTodo['id']}" ${response.newTodo['important'] == 1 ? "checked" : ""} />
+                             <input type="checkbox" id="${'isImportant'+response.newTodo['id']}" ${response.newTodo['important'] == 1 ? "checked" : ""} class="markImportant"/>
                              <label for="${'isImportant'+response.newTodo['id']}" title="Mark as important"></label>
                          </div>
                      </div>
@@ -270,7 +270,7 @@ $(".rm-repeat-detail").click(function(){
      e.preventDefault()
      saveTodo()
  })
- $("#todoList").on('click', '.todoItem', function() {
+ $("#todoList").on('click', '.todo-content', function() {
     $(".rightColumn").css('display', 'flex')
     $(".steps").empty();
      let url = $(this).data('url')
@@ -331,6 +331,37 @@ $(".rm-repeat-detail").click(function(){
             }
         }
      })
+ })
+ $("#todoList").on('change', '.doneTask', function(e) {
+    let status = $(this).prop('checked') ? 1 : 0,
+        id     = e.target.id.replace('isDone', '')
+    $.ajax({
+        method: 'PUT',
+        url: 'http://localhost/todo/update/' + id,
+        data: {
+          'status': status,
+        },
+        success:function() {
+        //   location.reload();
+        }
+      })
+ })
+ $("#todoList").on('change', '.markImportant', function(e) {
+    let important = $(this).prop('checked') ? 1 : 0,
+        id     = e.target.id.replace('isImportant', '')
+    $.ajax({
+        method: 'PUT',
+        url: 'http://localhost/todo/update/' + id,
+        data: {
+          'important': important,
+        },
+        success:function() {
+        //   location.reload();
+        }
+      })
+ })
+ $("#dropdownCompleted").click(function(e) {
+    $("#completedList").show()
  })
  $(".icon-close").click(function(e) {
      $(".rightColumn").css('display', 'none')

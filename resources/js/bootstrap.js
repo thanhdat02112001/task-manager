@@ -7,10 +7,11 @@ import * as Jquery from 'jquery';
 import * as Popper from '@popperjs/core';
 import flatpickr from 'flatpickr';
 import moment from 'moment';
-
+import Swal from "sweetalert2";
 window.$ = window.Jquery = Jquery;
 window.flatpickr = flatpickr
 window.moment = moment
+window.Swal = Swal
 $.ajaxSetup({
   headers: {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

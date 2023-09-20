@@ -66,7 +66,6 @@ $(".update-task").click(function(e) {
       repeat      = $('input[name="repeat-selected-detail"]').val(),
       note        = $('#task-note').val(),
       id          = $("input[name='todo-id']").val()
-  console.log(isDone, isImportant, dueDate, remindDate, repeat, note, id)
   $.ajax({
     method: 'PUT',
     url: 'http://localhost/todo/update/' + id,
@@ -87,12 +86,30 @@ $(".update-task").click(function(e) {
 
 //rm task
 $(".icon-rm-task").click(function(){
-  let id = $("input[name='todo-id']").val()
-  $.ajax({
-    method: "DELETE",
-    url: 'http://localhost/todo/delete/' + id,
-    success:function() {
-      location.reload();
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      let id = $("input[name='todo-id']").val()
+      $.ajax({
+        method: "DELETE",
+        url: 'http://localhost/todo/delete/' + id,
+        success:function() {
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          ).then(() => {
+            location.reload();
+          })
+        }
+      })
     }
   })
 })
