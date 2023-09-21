@@ -334,15 +334,15 @@ $(".rm-repeat-detail").click(function(){
  })
  $("#todoList").on('change', '.doneTask', function(e) {
     let status = $(this).prop('checked') ? 1 : 0,
-        id     = e.target.id.replace('isDone', '')
+        id     = e.target.id
     $.ajax({
         method: 'PUT',
-        url: 'http://localhost/todo/update/' + id,
+        url: 'http://localhost/todo/update/' + id.replace('isDone', ''),
         data: {
           'status': status,
         },
         success:function() {
-        //   location.reload();
+            $('#' + id).closest('.todoItem').fadeOut()
         }
       })
  })
@@ -361,7 +361,9 @@ $(".rm-repeat-detail").click(function(){
       })
  })
  $("#dropdownCompleted").click(function(e) {
-    $("#completedList").show()
+    $("#completedList").toggle()
+    $(".completeList").toggleClass('border-none')
+    $(".btn-icon").toggleClass('btn-icon-down')
  })
  $(".icon-close").click(function(e) {
      $(".rightColumn").css('display', 'none')

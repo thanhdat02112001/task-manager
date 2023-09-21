@@ -264,6 +264,10 @@
         .completeList {
             padding: 10px 0px;
             border-bottom: 1px solid #cbc9c9;
+            .btn-icon-down {
+                transform: rotate(90deg);
+                transition: 0.5s;
+            }
             button {
                 display: flex;
                 justify-content: start;
@@ -276,7 +280,13 @@
             }
             .completedList {
                 display: none;
+                .todo-title {
+                    text-decoration: line-through;
+                }
             }
+        }
+        .border-none {
+            border: none;
         }
     }
 }
