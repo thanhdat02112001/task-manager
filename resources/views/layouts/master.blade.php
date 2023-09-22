@@ -9,7 +9,11 @@
     <title>@yield('title', config('app.name', '@Master Layout'))</title>
    
     {{--Styles css common--}}
-    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/task_detail.js'])
+    <link rel="stylesheet" href="{{mix('css/app.css')}}">
+    <script src="{{mix('js/app.js')}}" defer></script>
+    <script src="{{mix('js/task_detail.js')}}" defer></script>
+    <script src="{{mix('js/myday.js')}}" defer></script>
+    <script src="{{mix('firebase-messaging-sw.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     {{-- @yield('style-libraries') --}}
     {{--Styles custom--}}
@@ -31,6 +35,5 @@
 
     {{--Scripts link to file or js custom--}}
     @yield('scripts')
-    @vite(['resources/js/myday.js'])
 </body>
 </html>
