@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/logout', [AuthController::class, 'logout']);
 
     Route::post('/todo/save', [TodoController::class, 'save'])->name('todo.save');
-    Route::get('/myday', [TodoController::class, 'index'])->name('todo.index');
+    Route::get('/task/{page}', [TodoController::class, 'index'])->name('todo.index');
     Route::get('/todo/{id}', [TodoController::class, 'show'])->name('todo.show');
     Route::put('/todo/update/{id}', [TodoController::class, 'update'])->name('todo.update');
     Route::delete('/todo/delete/{id}', [TodoController::class, 'delete'])->name('todo.delete');

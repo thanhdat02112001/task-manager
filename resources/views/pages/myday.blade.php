@@ -44,6 +44,7 @@
                     </div>
                     </div>
                     <input type="text" class="custom-input mt-2 addInput" id="todo_name" placeholder="Add a task" aria-label="Input group example">
+                    <input type="hidden" name="newTask-important" value="0">
                 </div>
             </form>
         </div>
@@ -405,7 +406,4 @@
         @endif
     </div>
 </div>      
-@endsection
-@section('scripts')
-  @vite(['resources/js/myday.js'])
 @endsection

@@ -220,7 +220,8 @@ $(".rm-repeat-detail").click(function(){
      let url = $("#formAddTodo").attr('action')
      let dueDate      =  $("input[name='dueDate-selected']").val(),
          reminderTime =  $("input[name='reminder-selected']").val(),
-         repeatType   =  $("input[name='repeat-selected']").val()
+         repeatType   =  $("input[name='repeat-selected']").val(),
+         important    = $("input[name='newTask-important']").val()
      if (repeatType == "") repeatType = 0;
      $.ajax({
          type: 'POST',
@@ -229,7 +230,8 @@ $(".rm-repeat-detail").click(function(){
              'name': name,
              'due_date': dueDate,
              'remind': reminderTime,
-             'repeat': repeatType
+             'repeat': repeatType,
+             'important': important
          },
          success: function(response) {
              if (response.code == 201) {

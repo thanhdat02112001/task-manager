@@ -36,7 +36,7 @@ class GoogleController extends Controller
        
                 Auth::login($finduser);
       
-                return redirect()->intended('myday');
+                return redirect()->intended('task/myday');
        
             }else{
                 $newUser = User::create([
@@ -49,7 +49,7 @@ class GoogleController extends Controller
       
                 Auth::login($newUser);
       
-                return redirect()->intended('myday');
+                return redirect()->intended('task/myday');
             }
       
         } catch (Exception $e) {

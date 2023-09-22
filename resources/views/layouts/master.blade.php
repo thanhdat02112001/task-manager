@@ -31,5 +31,6 @@
 
     {{--Scripts link to file or js custom--}}
     @yield('scripts')
+    @vite(['resources/js/myday.js'])
 </body>
 </html>

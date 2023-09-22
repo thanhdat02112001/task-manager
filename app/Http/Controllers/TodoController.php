@@ -28,12 +28,28 @@ class TodoController extends Controller
      * 
      * @return App\Models\Todo;
      */
-    public function index()
+    public function index($page)
     {
-        [$todos, $completedTodos] = Auth::user()->todos->partition(function($todo) {
-            return $todo->status == 0;
-        });
-        return view('pages.myday', compact('todos', 'completedTodos'));
+        $user =  Auth::user();
+        if ($page == "myday") {
+            [$todos, $completedTodos] = $user->todos->partition(function($todo) {
+                return $todo->status == 0;
+            });
+            return view('pages.myday', compact('todos', 'completedTodos'));
+        }
+        if ($page == "important") {
+            [$importantTodos, $importantDones] = $user->todos->where('important', '=', 1)->partition(function($todo) {
+                return $todo->status == 0;
+            });
+            return view('pages.important', compact('importantTodos', 'importantDones'));
+        }
+        if ($page == "plan") {
+            [$planTodos, $planTodoDones] = $user->todos->where('due_date', '!=', NULL)->partition(function($todo) {
+                return $todo->status == 0;
+            });
+            return view('pages.plan', compact('planTodos', 'planTodoDones'));
+        }
+        
     }
 
     /**
