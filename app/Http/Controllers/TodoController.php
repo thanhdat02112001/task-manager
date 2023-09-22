@@ -30,8 +30,10 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todos = Auth::user()->todos;
-        return view('pages.myday', compact('todos'));
+        [$todos, $completedTodos] = Auth::user()->todos->partition(function($todo) {
+            return $todo->status == 0;
+        });
+        return view('pages.myday', compact('todos', 'completedTodos'));
     }
 
     /**

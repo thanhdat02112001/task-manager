@@ -57,6 +57,10 @@ a {
     overflow: hidden;
     position: relative;
     height: 100%;
+    .active {
+        background-color: #eff6fc;
+        box-shadow: -15px 0 0 1em #eff6fc, 10px 0 0 1em #eff6fc;
+    }
 }
 .leftColumn-entered {
     width: 200px;

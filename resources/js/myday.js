@@ -270,7 +270,7 @@ $(".rm-repeat-detail").click(function(){
      e.preventDefault()
      saveTodo()
  })
- $("#todoList").on('click', '.todo-content', function() {
+ $(".todoList, .completeList").on('click', '.todo-content', function() {
     $(".rightColumn").css('display', 'flex')
     $(".steps").empty();
      let url = $(this).data('url')
@@ -332,7 +332,7 @@ $(".rm-repeat-detail").click(function(){
         }
      })
  })
- $("#todoList").on('change', '.doneTask', function(e) {
+ $(".todoList, .completeList").on('change', '.doneTask', function(e) {
     let status = $(this).prop('checked') ? 1 : 0,
         id     = e.target.id
     $.ajax({
@@ -342,11 +342,13 @@ $(".rm-repeat-detail").click(function(){
           'status': status,
         },
         success:function() {
-            $('#' + id).closest('.todoItem').fadeOut()
+            $('#' + id).closest('.todoItem').fadeOut(300, () => {
+                location.reload()
+            })
         }
       })
  })
- $("#todoList").on('change', '.markImportant', function(e) {
+ $(".todoList, .completeList").on('change', '.markImportant', function(e) {
     let important = $(this).prop('checked') ? 1 : 0,
         id     = e.target.id.replace('isImportant', '')
     $.ajax({

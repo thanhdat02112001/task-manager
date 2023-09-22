@@ -31,7 +31,7 @@
             </div>
         </div>
         <div class="subline">
-            <span>Saturday, September 2</span>
+            <span>{{date('D, M j ')}}</span>
         </div>
     </div>
     <div class="main">
@@ -372,35 +372,37 @@
             </div>    
             @endforeach
         </div>
-        <div class="completeList mt-3">
-            <button type="button" id="dropdownCompleted">
-                <div class="btn-icon me-3">
-                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0Z" fill="#212121"/>
-                    </svg>
+        @if (count($completedTodos) > 0) 
+            <div class="completeList mt-3">
+                <button type="button" id="dropdownCompleted">
+                    <div class="btn-icon me-3">
+                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.293 4.293a1 1 0 0 0 0 1.414L14.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414l-7-7a1 1 0 0 0-1.414 0Z" fill="#212121"/>
+                        </svg>
+                    </div>
+                    <span class="me-3 mt-1"><strong>Completed</strong></span>
+                    <span class="mt-1">{{count($completedTodos)}}</span>
+                </button>
+                <div class="completedList mt-4" id="completedList">
+                    @foreach ($completedTodos as $todo)
+                    <div class="todoItem">
+                        <div class="mark-done">
+                            <input type="checkbox" name="mark-done" id="{{'isDone'.$todo->id}}" class="checkbox-round d-none doneTask" {{$todo->status == 1 ? "checked" : ""}}>
+                            <label for="{{'isDone'.$todo->id}}" title="Mark as done"></label>
+                        </div>
+                        <div class="todo-content" data-url="{{route('todo.show', $todo->id)}}">
+                            <span class="todo-title">{{$todo->name}}</span>
+                            <span class="text-secondary tag">Tasks</span>
+                        </div>
+                        <div class="mark-important">
+                            <input type="checkbox" id="{{'isImportant'.$todo->id}}" {{($todo->important == 1) ? "checked" : ""}} class="markImportant" />
+                            <label for="{{'isImportant'.$todo->id}}" title="Mark as important"></label>
+                        </div>
+                    </div>    
+                    @endforeach
                 </div>
-                <span class="me-3 mt-1"><strong>Completed</strong></span>
-                <span class="mt-1">3</span>
-            </button>
-            <div class="completedList mt-4" id="completedList">
-                @foreach ($todos as $todo)
-                <div class="todoItem">
-                    <div class="mark-done">
-                        <input type="checkbox" name="mark-done" id="{{'isDone'.$todo->id}}" class="checkbox-round d-none doneTask" {{$todo->status == 1 ? "checked" : ""}}>
-                        <label for="{{'isDone'.$todo->id}}" title="Mark as done"></label>
-                    </div>
-                    <div class="todo-content" data-url="{{route('todo.show', $todo->id)}}">
-                        <span class="todo-title">{{$todo->name}}</span>
-                        <span class="text-secondary tag">Tasks</span>
-                    </div>
-                    <div class="mark-important">
-                        <input type="checkbox" id="{{'isImportant'.$todo->id}}" {{($todo->important == 1) ? "checked" : ""}} class="markImportant" />
-                        <label for="{{'isImportant'.$todo->id}}" title="Mark as important"></label>
-                    </div>
-                </div>    
-                @endforeach
             </div>
-        </div>
+        @endif
     </div>
 </div>      
 @endsection
