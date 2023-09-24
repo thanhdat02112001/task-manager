@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getMessaging} from "firebase/messaging";
+import { getMessaging } from "firebase/messaging/sw";
+import { onMessage, getToken} from "firebase/messaging";
 
 
 
@@ -23,7 +24,21 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const messaging = getMessaging(app);
-
-if (app.messaging.isSupported()) {
-  console.log('support')
-}
+onMessage(messaging, (payload) => {
+  console.log('Message received. ', payload);
+  // ...
+});
+getToken(messaging, { vapidKey: 'BN0EuDDsbnpe3Bn1Yl7uG00mzGKc-4rJ10_-LLdKO30ID-JfdEqAYVG_VJJsb6Brl_opzlag7072BfSAgjDj6QE' }).then((currentToken) => {
+  if (currentToken) {
+    // Send the token to your server and update the UI if necessary
+    // ...
+    console.log(currentToken)
+  } else {
+    // Show permission request UI
+    console.log('No registration token available. Request permission to generate one.');
+    // ...
+  }
+}).catch((err) => {
+  console.log('An error occurred while retrieving token. ', err);
+  // ...
+});
