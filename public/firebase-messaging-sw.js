@@ -8893,12 +8893,19 @@ var messaging = (0,firebase_messaging_sw__WEBPACK_IMPORTED_MODULE_1__.getMessagi
 });
 
 (0,firebase_messaging__WEBPACK_IMPORTED_MODULE_2__.getToken)(messaging, {
-  vapidKey: 'BN0EuDDsbnpe3Bn1Yl7uG00mzGKc-4rJ10_-LLdKO30ID-JfdEqAYVG_VJJsb6Brl_opzlag7072BfSAgjDj6QE'
+  vapidKey: "BN0EuDDsbnpe3Bn1Yl7uG00mzGKc-4rJ10_-LLdKO30ID-JfdEqAYVG_VJJsb6Brl_opzlag7072BfSAgjDj6QE"
 }).then(function (currentToken) {
   if (currentToken) {
-    // Send the token to your server and update the UI if necessary
-    // ...
-    console.log(currentToken);
+    $.ajax({
+      method: 'PUT',
+      url: "http://localhost/device_token/update",
+      data: {
+        'device_token': currentToken
+      },
+      success: function success(response) {
+        console.log(response.message);
+      }
+    });
   } else {
     // Show permission request UI
     console.log('No registration token available. Request permission to generate one.');

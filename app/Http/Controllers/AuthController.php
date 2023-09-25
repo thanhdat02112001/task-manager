@@ -20,4 +20,18 @@ class AuthController extends Controller
     
         return redirect('/');
     }
+
+    /**
+     * Update user device token
+     */
+    public function updateDeviceToken(Request $request)
+    {
+        $user = Auth::user();
+        if ($user) {
+            $user->device_token = $request->device_token;
+            $user->save();
+            return response()->json(['message' => 'new device_token updated', 'status' => '200']);
+        }
+        return response()->json(['message' => 'can not update device_token', 'status' => '400']);
+    }
 }

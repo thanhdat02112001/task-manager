@@ -35,5 +35,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::post('/step/save', [StepController::class, 'save'])->name('step.save');
     Route::delete('/step/delete/{id}', [StepController::class, 'delete'])->name('step.delete');
+
+    Route::put('/device_token/update', [AuthController::class, 'updateDeviceToken'])->name('device_token.update');
 });
 

@@ -28,11 +28,18 @@ onMessage(messaging, (payload) => {
   console.log('Message received. ', payload);
   // ...
 });
-getToken(messaging, { vapidKey: 'BN0EuDDsbnpe3Bn1Yl7uG00mzGKc-4rJ10_-LLdKO30ID-JfdEqAYVG_VJJsb6Brl_opzlag7072BfSAgjDj6QE' }).then((currentToken) => {
+getToken(messaging, { vapidKey: process.env.MIX_FCM_VAPID_KEY }).then((currentToken) => {
   if (currentToken) {
-    // Send the token to your server and update the UI if necessary
-    // ...
-    console.log(currentToken)
+    $.ajax({
+      method: 'PUT',
+      url: "http://localhost/device_token/update",
+      data: {
+        'device_token': currentToken
+      },
+      success:function(response) {
+        console.log(response.message)
+      }
+    })
   } else {
     // Show permission request UI
     console.log('No registration token available. Request permission to generate one.');
