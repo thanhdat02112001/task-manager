@@ -29,7 +29,7 @@ class NotifyDueTasks extends Command
      */
     public function handle()
     {
-        $about_due_tasks = Todo::where('status', '=', 0)->whereBetween('due_date', [now(), now()->addMinutes(30)])->get();
+        $about_due_tasks = Todo::where('status', '=', 0)->whereBetween('due_date', [now(), now()->addHour()])->get();
         foreach ($about_due_tasks as $task) {
             $userDeviceToken =  User::find($task->user_id)->device_token;
             $data = [
