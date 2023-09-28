@@ -13,6 +13,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command('app:notify-due-tasks')->hourly();
+        $schedule->command('app:schedule-remind')->everyMinute()->withoutOverlapping();
     }
 
     /**
