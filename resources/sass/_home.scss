@@ -1,0 +1,22 @@
+.home-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: #faf9f8;
+  padding-top: 16px;
+  .home-content {
+    margin: 0px 24px;
+    .statistic {
+      display: flex;
+      flex-direction: column;
+    }
+    #chart {
+      margin-top: 16px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  }
+  .home-title {
+    font-size: 1.4rem;
+  }
+}

@@ -3,5 +3,6 @@
     "/firebase-messaging-sw.js": "/firebase-messaging-sw.js",
     "/js/myday.js": "/js/myday.js",
     "/js/task_detail.js": "/js/task_detail.js",
+    "/js/chart.js": "/js/chart.js",
     "/css/app.css": "/css/app.css"
 }

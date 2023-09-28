@@ -8,6 +8,7 @@ import * as Popper from '@popperjs/core';
 import flatpickr from 'flatpickr';
 import moment from 'moment';
 import Swal from "sweetalert2";
+import Chart from 'chart.js/auto';
 window.$ = window.Jquery = Jquery;
 window.flatpickr = flatpickr
 window.moment = moment
@@ -18,6 +19,7 @@ $.ajaxSetup({
   }
 })
 window.Popper = Popper;
+window.Chart = Chart;
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
