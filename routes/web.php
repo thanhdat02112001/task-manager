@@ -37,9 +37,5 @@ Route::group(['middleware' => 'auth'], function() {
     Route::delete('/step/delete/{id}', [StepController::class, 'delete'])->name('step.delete');
 
     Route::put('/device_token/update', [AuthController::class, 'updateDeviceToken'])->name('device_token.update');
-
-    Route::get('/home', function() {
-        return view('pages.home');
-    });
 });
 

@@ -16,7 +16,7 @@
           <div class="d-flex justify-content-between">
             <div class="card w-25">
               <div class="card-body">
-                <h5 class="card-title">Running Task</h5>
+                <h5 class="card-title">Running Task Today</h5>
                 <div class="card-text d-flex align-items-center">
                   <div class="icon">
                     <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -32,7 +32,7 @@
             </div>
             <div class="card w-25">
               <div class="card-body">
-                <h5 class="card-title">Completed Task</h5>
+                <h5 class="card-title">Completed Task Today</h5>
                 <div class="card-text d-flex align-items-center">
                   <div class="icon">
                     <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -48,7 +48,7 @@
             </div>
             <div class="card w-25">
               <div class="card-body">
-                <h5 class="card-title">Completed Rate</h5>
+                <h5 class="card-title">Completed Rate Today</h5>
                 <div class="card-text d-flex align-items-center">
                   <div class="icon">
                     <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

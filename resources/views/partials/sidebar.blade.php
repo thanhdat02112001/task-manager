@@ -11,8 +11,8 @@
     <div class="sidebar-content">
         <nav aria-label="Lists" role="navigation">
             <ul role="listbox" class="ms-FocusZone css-41 lists" data-focuszone-id="FocusZone18">
-                <li class="mt-3 {{Request::segment(1) == "home" ? "active" : ""}}" tabindex="0" role="option" aria-selected="false">
-                    <a href="/home" class="d-flex align-items-center">
+                <li class="mt-3 {{Request::segment(2) == "home" ? "active" : ""}}" tabindex="0" role="option" aria-selected="false">
+                    <a href="{{route('todo.index', 'home')}}" class="d-flex align-items-center">
                         <div aria-hidden="true" class="me-4">
                             <span class="listItem-icon">
                                 <svg class="fluentIcon ___12fm75w f1w7gpdv fez10in fg4l7m0" fill="currentColor" aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" 

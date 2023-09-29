@@ -49,6 +49,9 @@ class TodoController extends Controller
             });
             return view('pages.plan', compact('planTodos', 'planTodoDones'));
         }
+        if ($page == "home") {
+            return view('pages.home');
+        }
         
     }
 
