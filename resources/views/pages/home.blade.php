@@ -18,23 +18,7 @@
               <div class="card-body">
                 <h5 class="card-title">Running Task</h5>
                 <div class="card-text d-flex align-items-center">
-                  <div class="icon rotate">
-                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M5.75 3a2.25 2.25 0 0 1 2.248 2.25v13.5a2.25 2.25 0 1 1-4.498 0V5.25A2.25 2.25 0 0 1 5.75 3Zm6.5 4a2.25 2.25 0 0 1 2.248 2.25v9.5a2.25 2.25 0 1 1-4.498 0v-9.5A2.25 2.25 0 0 1 12.25 7Zm6.5 4a2.25 2.25 0 0 1 2.248 2.25v5.5a2.25 2.25 0 1 1-4.498 0v-5.5A2.249 2.249 0 0 1 18.75 11Z" fill="#3398DB"/>
-                    </svg>
-                  </div>
-                  <div class="statistic ms-5">
-                    <span>RUNNING</span>
-                    <span><strong>12</strong></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card w-25">
-              <div class="card-body">
-                <h5 class="card-title">Running Task</h5>
-                <div class="card-text d-flex align-items-center">
-                  <div class="icon rotate">
+                  <div class="icon">
                     <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path d="M5.75 3a2.25 2.25 0 0 1 2.248 2.25v13.5a2.25 2.25 0 1 1-4.498 0V5.25A2.25 2.25 0 0 1 5.75 3Zm6.5 4a2.25 2.25 0 0 1 2.248 2.25v9.5a2.25 2.25 0 1 1-4.498 0v-9.5A2.25 2.25 0 0 1 12.25 7Zm6.5 4a2.25 2.25 0 0 1 2.248 2.25v5.5a2.25 2.25 0 1 1-4.498 0v-5.5A2.249 2.249 0 0 1 18.75 11Z" fill="#3398DB"/>
                     </svg>
@@ -50,9 +34,25 @@
               <div class="card-body">
                 <h5 class="card-title">Completed Task</h5>
                 <div class="card-text d-flex align-items-center">
-                  <div class="icon rotate">
+                  <div class="icon">
                     <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path d="m8.5 16.586-3.793-3.793a1 1 0 0 0-1.414 1.414l4.5 4.5a1 1 0 0 0 1.414 0l11-11a1 1 0 0 0-1.414-1.414L8.5 16.586Z" fill="#3398DB"/>
+                    </svg>
+                  </div>
+                  <div class="statistic ms-5">
+                    <span>COMPLETED</span>
+                    <span><strong>12</strong></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card w-25">
+              <div class="card-body">
+                <h5 class="card-title">Completed Rate</h5>
+                <div class="card-text d-flex align-items-center">
+                  <div class="icon">
+                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 8V2H6a2 2 0 0 0-2 2v7.035A3.5 3.5 0 0 1 7 14.5v.025l2.013-2.012a1.75 1.75 0 1 1 2.474 2.474L9.475 17H9.5a3.5 3.5 0 0 1 3.163 5H18a2 2 0 0 0 2-2V10h-6a2 2 0 0 1-2-2Zm-6.873 8.398A2.492 2.492 0 0 1 3.5 17a2.5 2.5 0 1 1 1.627-.602ZM4 13.634a1 1 0 1 0-1 1.732 1 1 0 0 0 1-1.732Zm6.78.646a.75.75 0 1 0-1.06-1.06l-7.5 7.5a.75.75 0 1 0 1.06 1.06l7.5-7.5ZM7 20.5A2.496 2.496 0 0 0 9.5 23a2.496 2.496 0 0 0 2.5-2.5 2.5 2.5 0 0 0-5 0Zm3.5 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm3-12.5V2.5l6 6H14a.5.5 0 0 1-.5-.5Z" fill="#3398DB"/>
                     </svg>
                   </div>
                   <div class="statistic ms-5">
@@ -69,6 +69,55 @@
         </div>
         <div class="col-md-4">
           <div class="calendar" id="calendar"></div>
+          <div class="upcoming">
+            <div class="upcoming-label">
+              <span>Upcoming Task</span>
+            </div>
+            <div class="upcoming-list">
+              <div class="todoItem">
+                <div class="mark-done">
+                    <input type="checkbox" name="mark-done" id="isDone" class="checkbox-round d-none doneTask">
+                    <label for="isDone" title="Mark as done"></label>
+                </div>
+                <div class="todo-content" data-url="">
+                    <span class="todo-title">Comming</span>
+                    <span class="text-secondary tag">9:00 AM</span>
+                </div>
+                <div class="mark-important">
+                    <input type="checkbox" id="isImportant" class="markImportant" />
+                    <label for="isImportant" title="Mark as important"></label>
+                </div>
+              </div>
+              <div class="todoItem">
+                <div class="mark-done">
+                    <input type="checkbox" name="mark-done" id="isDone" class="checkbox-round d-none doneTask">
+                    <label for="isDone" title="Mark as done"></label>
+                </div>
+                <div class="todo-content" data-url="">
+                    <span class="todo-title">Comming</span>
+                    <span class="text-secondary tag">9:00 AM</span>
+                </div>
+                <div class="mark-important">
+                    <input type="checkbox" id="isImportant" class="markImportant" />
+                    <label for="isImportant" title="Mark as important"></label>
+                </div>
+              </div>
+              <div class="todoItem">
+                <div class="mark-done">
+                    <input type="checkbox" name="mark-done" id="isDone" class="checkbox-round d-none doneTask">
+                    <label for="isDone" title="Mark as done"></label>
+                </div>
+                <div class="todo-content" data-url="">
+                    <span class="todo-title">Comming</span>
+                    <span class="text-secondary tag">9:00 AM</span>
+                </div>
+                <div class="mark-important">
+                    <input type="checkbox" id="isImportant" class="markImportant" />
+                    <label for="isImportant" title="Mark as important"></label>
+                </div>
+              </div>     
+            </div>
+          </div>
         </div>
       </div>
     </div>
