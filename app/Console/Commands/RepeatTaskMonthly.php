@@ -6,14 +6,14 @@ use App\Models\Todo;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
-class RepeatTaskDaily extends Command
+class RepeatTaskMonthly extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'app:repeat-task-daily';
+    protected $signature = 'app:repeat-task-monthly';
 
     /**
      * The console command description.
@@ -27,10 +27,10 @@ class RepeatTaskDaily extends Command
      */
     public function handle()
     {
-        $startTime = Carbon::now()->subDay()->startOfDay()->format('Y-m-d H:i:s');
-        $endTime = Carbon::now()->subDay()->endOfDay()->format('Y-m-d H:i:s');
-        $dailyTaskRepeat = Todo::where('repeat', '=', 1)->whereBetween('updated_at', [$startTime, $endTime])->get();
-        foreach($dailyTaskRepeat as $task)
+        $startTime = Carbon::now()->subMonth()->startOfMonth()->format('Y-m-d H:i:s');
+        $endTime = Carbon::now()->subMonth()->endOfMonth()->format('Y-m-d H:i:s');
+        $weekyTaskRepeat = Todo::where('repeat', '=', 3)->whereBetween('updated_at', [$startTime, $endTime])->get();
+        foreach($weekyTaskRepeat as $task)
         {
             $data = [
                 'name' => $task->name,
@@ -47,7 +47,8 @@ class RepeatTaskDaily extends Command
     }
     public function convertNewTime($time)
     {
-        $newTime = Carbon::createFromFormat('Y-m-d H:i:s',$time)->addDay();
+        $newTime = Carbon::createFromFormat('Y-m-d H:i:s',$time)->addMonth();
         return $newTime->format('Y-m-d H:i:s');
     }
+    
 }

@@ -15,6 +15,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('app:notify-due-tasks')->hourly();
         $schedule->command('app:schedule-remind')->everyMinute()->withoutOverlapping();
         $schedule->command('app:repeat-task-daily')->daily();
+        $schedule->command('app:repeat-task-weekly')->weekly();
+        $schedule->command('app:repeat-task-monthly')->monthly();
     }
 
     /**
