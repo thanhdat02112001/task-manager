@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Todo;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,26 +32,18 @@ class TodoController extends Controller
     public function index($page)
     {
         $user =  Auth::user();
-        if ($page == "myday") {
-            [$todos, $completedTodos] = $user->todos->partition(function($todo) {
-                return $todo->status == 0;
-            });
-            return view('pages.myday', compact('todos', 'completedTodos'));
-        }
-        if ($page == "important") {
-            [$importantTodos, $importantDones] = $user->todos->where('important', '=', 1)->partition(function($todo) {
-                return $todo->status == 0;
-            });
-            return view('pages.important', compact('importantTodos', 'importantDones'));
-        }
-        if ($page == "plan") {
-            [$planTodos, $planTodoDones] = $user->todos->where('due_date', '!=', NULL)->partition(function($todo) {
-                return $todo->status == 0;
-            });
-            return view('pages.plan', compact('planTodos', 'planTodoDones'));
-        }
-        if ($page == "home") {
-            return view('pages.home');
+        switch ($page) {
+            case "myday": 
+                return self::myDayView($user);
+                break;
+            case "important":
+                return self::importantView($user);
+                break;
+            case "plan":
+                return self::planView($user);
+                break;
+            default:
+                return self::homeView($user);
         }
         
     }
@@ -94,5 +87,41 @@ class TodoController extends Controller
             return response()->json(['message' => 'Delete task success!', 'code' => '201']);
         }
         return response()->json(['message' => 'Cannot delete task', 'code' => '400']);
+    }
+
+    function myDayView($user)
+    {
+        $today = Carbon::today()->format('Y-m-d');
+        [$todos, $completedTodos] = $user->todos()->whereDate('created_at', '=', $today)->get()->partition(function($todo) {
+            return $todo->status == 0;
+        });
+        return view('pages.myday', compact('todos', 'completedTodos'));
+    }
+
+    function importantView($user)
+    {
+        [$importantTodos, $importantDones] = $user->todos->where('important', '=', 1)->partition(function($todo) {
+            return $todo->status == 0;
+        });
+        return view('pages.important', compact('importantTodos', 'importantDones'));
+    }
+
+    function planView($user)
+    {
+        [$planTodos, $planTodoDones] = $user->todos->where('due_date', '!=', NULL)->partition(function($todo) {
+            return $todo->status == 0;
+        });
+        return view('pages.plan', compact('planTodos', 'planTodoDones'));
+    }
+
+    function homeView($user)
+    {
+        $today = Carbon::today()->format('Y-m-d');
+        [$todos, $completedTodos] = $user->todos()->whereDate('created_at', '=', $today)->get()->partition(function($todo) {
+            return $todo->status == 0;
+        });
+        $upCommings = $todos->sortBy('created_at')->take(3);
+        $completeRate = round((count($completedTodos) / ((count($todos) + count($completedTodos)))) * 100, 2);
+        return view('pages.home', compact('todos', 'completedTodos', 'completeRate', 'upCommings'));   
     }
 }

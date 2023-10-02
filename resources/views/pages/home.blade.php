@@ -25,7 +25,7 @@
                   </div>
                   <div class="statistic ms-5">
                     <span>RUNNING</span>
-                    <span><strong>12</strong></span>
+                    <span><strong>{{count($todos)}}</strong></span>
                   </div>
                 </div>
               </div>
@@ -41,7 +41,7 @@
                   </div>
                   <div class="statistic ms-5">
                     <span>COMPLETED</span>
-                    <span><strong>12</strong></span>
+                    <span><strong>{{count($completedTodos)}}</strong></span>
                   </div>
                 </div>
               </div>
@@ -57,7 +57,7 @@
                   </div>
                   <div class="statistic ms-5">
                     <span>COMPLETED</span>
-                    <span><strong>12</strong></span>
+                    <span><strong>{{$completeRate}} %</strong></span>
                   </div>
                 </div>
               </div>
@@ -74,48 +74,21 @@
               <span>Upcoming Task</span>
             </div>
             <div class="upcoming-list">
-              <div class="todoItem">
-                <div class="mark-done">
-                    <input type="checkbox" name="mark-done" id="isDone" class="checkbox-round d-none doneTask">
-                    <label for="isDone" title="Mark as done"></label>
+              @foreach ($upCommings as $todo)
+                <div class="todoItem">
+                  <div class="mark-done">
+                      <input type="checkbox" name="mark-done" id="{{'isDone'.$todo->id}}" class="checkbox-round d-none doneTask" {{$todo->status == 1 ? "checked" : ""}}>
+                      <label for="isDone" title="Mark as done"></label>
+                  </div>
+                  <div class="todo-content" data-url="{{route('todo.show', $todo->id)}}">
+                      <span class="todo-title">{{$todo->name}}</span>
+                  </div>
+                  <div class="mark-important">
+                    <input type="checkbox" id="{{'isImportant'.$todo->id}}" {{($todo->important == 1) ? "checked" : ""}} class="markImportant" />
+                    <label for="{{'isImportant'.$todo->id}}" title="Mark as important"></label>
+                  </div>
                 </div>
-                <div class="todo-content" data-url="">
-                    <span class="todo-title">Comming</span>
-                    <span class="text-secondary tag">9:00 AM</span>
-                </div>
-                <div class="mark-important">
-                    <input type="checkbox" id="isImportant" class="markImportant" />
-                    <label for="isImportant" title="Mark as important"></label>
-                </div>
-              </div>
-              <div class="todoItem">
-                <div class="mark-done">
-                    <input type="checkbox" name="mark-done" id="isDone" class="checkbox-round d-none doneTask">
-                    <label for="isDone" title="Mark as done"></label>
-                </div>
-                <div class="todo-content" data-url="">
-                    <span class="todo-title">Comming</span>
-                    <span class="text-secondary tag">9:00 AM</span>
-                </div>
-                <div class="mark-important">
-                    <input type="checkbox" id="isImportant" class="markImportant" />
-                    <label for="isImportant" title="Mark as important"></label>
-                </div>
-              </div>
-              <div class="todoItem">
-                <div class="mark-done">
-                    <input type="checkbox" name="mark-done" id="isDone" class="checkbox-round d-none doneTask">
-                    <label for="isDone" title="Mark as done"></label>
-                </div>
-                <div class="todo-content" data-url="">
-                    <span class="todo-title">Comming</span>
-                    <span class="text-secondary tag">9:00 AM</span>
-                </div>
-                <div class="mark-important">
-                    <input type="checkbox" id="isImportant" class="markImportant" />
-                    <label for="isImportant" title="Mark as important"></label>
-                </div>
-              </div>     
+              @endforeach   
             </div>
           </div>
         </div>

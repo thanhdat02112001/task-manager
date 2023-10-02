@@ -68,6 +68,8 @@ a {
 }
 .centerColumn {
     width: calc(100% - 200px);
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 @media all and (min-width: 1010px){
     .leftColumn-entered {
