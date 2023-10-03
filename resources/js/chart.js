@@ -1,32 +1,40 @@
-let chart = $("#chart");
-new Chart(chart, {
-  type: 'line',
-  data: {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-    datasets: [{
-        label: "online tutorial subjects",
-        data: [9, 8, 10, 7, 6, 12, 5, 8, 9, 10, 5, 7],
-    }],
-  },
-  options: {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'bottom'
-      }
-    },
-    scales: {
-      x: {
-        grid: {
-          display: false
-        }
+
+$.ajax({
+  method: 'GET',
+  url: 'http://localhost/statistic',
+  success:function(response) {
+    let chart = $("#chart");
+    new Chart(chart, {
+      type: 'line',
+      data: {
+        labels: response.dates,
+        datasets: [{
+            label: "Tasks count in 30 days",
+            data: response.totals,
+        }],
       },
-      y: {
-        grid: {
-          display: false
-        }
-      }
-    },
-    tension: 0.2
-  },
-});
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          }
+        },
+        scales: {
+          x: {
+            grid: {
+              display: false
+            }            
+          },
+          y: {
+            grid: {
+              display: false
+            },
+            suggestedMin: 0
+          }
+        },
+        tension: 0.2
+      },
+    });
+  }
+})

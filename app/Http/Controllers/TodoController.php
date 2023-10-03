@@ -6,6 +6,7 @@ use App\Models\Todo;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TodoController extends Controller
 {
@@ -121,7 +122,26 @@ class TodoController extends Controller
             return $todo->status == 0;
         });
         $upCommings = $todos->sortBy('created_at')->take(3);
-        $completeRate = round((count($completedTodos) / ((count($todos) + count($completedTodos)))) * 100, 2);
+        $completeRate = 0;
+        if (count($todos) > 0) {
+            $completeRate = round((count($completedTodos) / ((count($todos) + count($completedTodos)))) * 100, 2);
+        }
         return view('pages.home', compact('todos', 'completedTodos', 'completeRate', 'upCommings'));   
+    }
+
+    public function getStatisticData()
+    {
+        $startDate = Carbon::today()->subDays(30)->format('Y-m-d H:i:s');
+        $endDate = Carbon::now()->format('Y-m-d H:i:s');
+        $tasks = DB::table('todos')->select(DB::raw('count(*) as total'), DB::raw('DATE(created_at) as date'))->where('user_id', '=', Auth::user()->id)
+                ->whereBetween('created_at', [$startDate, $endDate])
+                ->groupBy('date')
+                ->pluck('total', 'date')
+                ->toArray();
+        foreach ($tasks as $key => $value) {
+            $dates[] = $key;
+            $totals[] = $value;
+        }
+        return response()->json(['dates' => $dates, 'totals' => $totals, 'status' => 200]);
     }
 }
