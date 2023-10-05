@@ -150,4 +150,21 @@ class TodoController extends Controller
         $todos = Auth::user()->todos()->where('name', 'like', '%' . $request->keyword . '%')->take(5)->get();
         return response()->json(['todos' => $todos, 'status' => 200]);
     }
+
+    public function getCommingPlan()
+    {
+        $events = [];
+        $plans = Auth::user()->todos()->where('due_date', '!=', NULL)->where('status', '=', 0)->get();
+        foreach($plans as $plan)
+        {
+            $data =(object) [
+                'title' => $plan->name,
+                'start' => Carbon::parse($plan->due_date)->format('Y-m-d'),
+                'end'   => Carbon::parse($plan->due_date)->format('Y-m-d'),
+            ];
+
+            $events[] = $data;
+        }
+        return response()->json(['events' => $events, 'status' => 200]);
+    }
 }

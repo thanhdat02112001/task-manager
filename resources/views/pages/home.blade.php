@@ -100,14 +100,16 @@
   <script src="{{mix('js/chart.js')}}" defer></script>
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
     <script>
-
-      document.addEventListener('DOMContentLoaded', function() {
+      const drawCalendar = async () => {
+        const response = await fetch('http://localhost/get_plan')
+        const rs = await response.json()
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
+          initialView: 'dayGridMonth',
+          events: rs.events
         });
         calendar.render();
-      });
-
+      }
+      drawCalendar() 
     </script>
 @endsection

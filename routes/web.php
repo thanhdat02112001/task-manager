@@ -39,5 +39,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::put('/device_token/update', [AuthController::class, 'updateDeviceToken'])->name('device_token.update');
     Route::get('/statistic', [TodoController::class, 'getStatisticData']);
     Route::post('/search', [TodoController::class, 'search'])->name('todo.search');
+    Route::get('/get_plan', [TodoController::class, 'getCommingPlan']);
 });
 
