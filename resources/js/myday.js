@@ -272,7 +272,7 @@ $(".rm-repeat-detail").click(function(){
      e.preventDefault()
      saveTodo()
  })
- $(".todoList, .completeList").on('click', '.todo-content', function() {
+ $(".todoList, .completeList, .todoItem").on('click', '.todo-content', function() {
     $(".rightColumn").css('display', 'flex')
     $(".steps").empty();
      let url = $(this).data('url')
