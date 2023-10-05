@@ -8,7 +8,8 @@
                 <span class="input-group-text text-primary h-100">
                     <i class="fa fa-search fa-flip-horizontal" aria-hidden="true"></i>
                 </span>
-                <input type="text" class="form-control h-100" placeholder="Search">
+                <input type="search" class="form-control h-100" id="searchTask" placeholder="Search" data-url="{{route('todo.search')}}" autocomplete="off">
+                <div class="search-result"></div>
             </div>
         </div>
         <div class="col-md-2 col-sm-2 text-center">

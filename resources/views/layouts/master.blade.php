@@ -13,6 +13,7 @@
     <script src="{{mix('js/app.js')}}" defer></script>
     <script src="{{mix('js/task_detail.js')}}" defer></script>
     <script src="{{mix('js/myday.js')}}" defer></script>
+    <script src="{{mix('js/search.js')}}" defer></script>
     <script src="{{mix('firebase-messaging-sw.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     {{-- @yield('style-libraries') --}}

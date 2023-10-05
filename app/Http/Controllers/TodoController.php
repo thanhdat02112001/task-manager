@@ -144,4 +144,10 @@ class TodoController extends Controller
         }
         return response()->json(['dates' => $dates, 'totals' => $totals, 'status' => 200]);
     }
+
+    public function search(Request $request)
+    {
+        $todos = Auth::user()->todos()->where('name', 'like', '%' . $request->keyword . '%')->take(5)->get();
+        return response()->json(['todos' => $todos, 'status' => 200]);
+    }
 }
