@@ -167,4 +167,34 @@ class TodoController extends Controller
         }
         return response()->json(['events' => $events, 'status' => 200]);
     }
+
+    public function sortByDate($page)
+    {
+        $user =  Auth::user();
+        switch ($page) {
+            case "myday": 
+                $today = Carbon::today()->format('Y-m-d');
+                [$todos, $completedTodos] = $user->todos()->whereDate('created_at', '=', $today)->orderByDesc('created_at')->get()->partition(function($todo) {
+                    return $todo->status == 0;
+                });
+                return response()->json(['tasks' => $todos, 'tasksDone' => $completedTodos]);
+                break;
+            case "important":
+                [$importantTodos, $importantDones] = $user->todos()->where('important', '=', 1)->orderByDesc('created_at')->get()->partition(function($todo) {
+                    return $todo->status == 0;
+                });
+                return response()->json(['tasks' => $importantTodos, 'tasksDone' => $importantDones]);
+                break;
+            case "plan":
+                [$planTodos, $planTodoDones] = $user->todos()->where('due_date', '!=', NULL)->orderByDesc('created_at')->get()->partition(function($todo) {
+                    return $todo->status == 0;
+                });
+                return response()->json(['tasks' => $planTodos, 'tasksDone' => $planTodoDones]);
+                break;
+            default:
+                return response()->json(['message' => 'invalid request']);
+        }
+        
+
+    }
 }

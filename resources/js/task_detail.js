@@ -103,7 +103,7 @@ $(".icon-rm-task").click(function(){
         success:function() {
           Swal.fire(
             'Deleted!',
-            'Your file has been deleted.',
+            'Your task has been deleted.',
             'success'
           ).then(() => {
             location.reload();

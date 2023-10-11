@@ -40,5 +40,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/statistic', [TodoController::class, 'getStatisticData']);
     Route::post('/search', [TodoController::class, 'search'])->name('todo.search');
     Route::get('/get_plan', [TodoController::class, 'getCommingPlan']);
+    Route::get('/sort/{page}', [TodoController::class, 'sortByDate'])->name('todo.sort');
 });
 
