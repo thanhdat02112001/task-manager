@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Todo;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -12,11 +13,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        for ($i = 1 ; $i<= 30; $i++) {
+            $countTodo = rand(1, 10);
+            $created_at = now()->subDays($i);
+            Todo::factory($countTodo)->create([
+                'created_at' => $created_at,
+                'updated_at' =>  $created_at,
+            ]);
+      }
     }
 }
