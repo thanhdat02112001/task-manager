@@ -35,7 +35,7 @@ class NotifyDueTasks extends Command
             $data = [
                 "registration_ids" => array($userDeviceToken),
                 "notification" => [
-                    "title" => $task->name . " is about to due",
+                    "title" => "Task Manager",
                     "body" => $task->name. " is going to due at ". $task->due_date,  
                 ]
             ];

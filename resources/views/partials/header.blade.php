@@ -1,7 +1,7 @@
 <div class="header">
     <div class="row h-100">
         <div class="col-md-2 col-sm-2 d-flex align-items-center justify-content-center">
-            <strong class="fs-3">To Do</strong>
+            <strong class="fs-3">Task Manager</strong>
         </div>
         <div class="col-md-8 col-sm-8 d-flex align-items-center justify-content-center">
             <div class="input-group searchToolBar">

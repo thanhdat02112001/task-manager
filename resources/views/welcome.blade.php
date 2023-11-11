@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{mix('css/app.css')}}">
     <script src="{{mix('js/app.js')}}"></script>
-    <title>Todo</title>
+    <title>Task Manager</title>
 </head>
 <body>
     <div class="container">
@@ -17,10 +17,10 @@
             <div class="interaction" role="main" aria-labelledby="headline subheadline">
                 <div class="interaction-top">
                     <img src="https://to-do-cdn.microsoft.com/static-assets/c87265a87f887380a04cf21925a56539b29364b51ae53e089c3ee2b2180148c6/icons/logo.png" class="image-logo" alt="">
-                    <h1 id="headline"><span class="me-2">To Do</span></h1>
+                    <h1 id="headline"><span class="me-2">Task Manager</span></h1>
                     <img src="https://to-do-cdn.microsoft.com/static-assets/da7ea2e49739d43b8e3a4d59c6029b078a13f81b18a7b236cd0ebfc41495dfd1/icons/welcome-center.png" class="image-center" alt="">
                     <p class="description">
-                        <span>To Do gives you focus, from work to play.</span>
+                        <span>Task Manager gives you focus, from work to play.</span>
                     </p>
                 </div>
                 <div class="interaction-signin">

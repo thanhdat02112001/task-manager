@@ -34,7 +34,7 @@ class ScheduleRemind extends Command
             $data = [
                 "registration_ids" => array($userDeviceToken),
                 "notification" => [
-                    "title" => "Remind from TODO",
+                    "title" => "Remind from Task Manager",
                     "body" => "You have to do " . $task->name . ". Please check it out!",  
                 ]
             ];

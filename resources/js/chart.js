@@ -30,7 +30,10 @@ $.ajax({
             grid: {
               display: false
             },
-            suggestedMin: 0
+            suggestedMin: 0,
+            ticks: {
+              stepSize: 1
+            }
           }
         },
         tension: 0.2
