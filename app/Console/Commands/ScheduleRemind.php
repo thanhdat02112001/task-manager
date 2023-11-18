@@ -27,7 +27,7 @@ class ScheduleRemind extends Command
      */
     public function handle()
     {
-        $tasks_need_reminds = Todo::where('status', '=', 0)->whereBetween('remind', [now()->startOfMinute(), now()->endOfMinute()])->get();
+        $tasks_need_reminds = Todo::where('status', '=', 0)->whereBetween('remind', [now()->startOfMinute(), now()->endOfMinute()])->with('steps')->get();
         foreach($tasks_need_reminds as $task)
         {
             $userDeviceToken = User::find($task->user_id)->device_token;
@@ -35,9 +35,17 @@ class ScheduleRemind extends Command
                 "registration_ids" => array($userDeviceToken),
                 "notification" => [
                     "title" => "Remind from Task Manager",
-                    "body" => "You have to do " . $task->name . ". Please check it out!",  
+                    "body" => "You have to do " . $task->name . ". Please check it out! \n",  
                 ]
             ];
+            if (count($task->steps) > 0) {
+                $data['notification']['body'] .= "Follow these steps: \n";
+                foreach($task->steps as $step) {
+                    if ($step->status == 0) {
+                        $data['notification']['body'] .= $step->content.PHP_EOL;
+                    }
+                }
+            }
             $dataString = json_encode($data);
             $headers = [
                 'Authorization: key=' . env('FCM_SERVER_KEY'),

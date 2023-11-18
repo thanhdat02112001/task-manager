@@ -29,16 +29,24 @@ class NotifyDueTasks extends Command
      */
     public function handle()
     {
-        $about_due_tasks = Todo::where('status', '=', 0)->whereBetween('due_date', [now(), now()->addHour()])->get();
+        $about_due_tasks = Todo::where('status', '=', 0)->whereBetween('due_date', [now(), now()->addHour()])->with('steps')->get();
         foreach ($about_due_tasks as $task) {
             $userDeviceToken =  User::find($task->user_id)->device_token;
             $data = [
                 "registration_ids" => array($userDeviceToken),
                 "notification" => [
                     "title" => "Task Manager",
-                    "body" => $task->name. " is going to due at ". $task->due_date,  
+                    "body" => $task->name. " is going to due at ". $task->due_date . PHP_EOL,  
                 ]
             ];
+            if (count($task->steps) > 0) {
+                $data['notification']['body'] .= "Follow these steps: \n";
+                foreach($task->steps as $step) {
+                    if ($step->status == 0) {
+                        $data['notification']['body'] .= $step->content.PHP_EOL;
+                    }
+                }
+            }
             $dataString = json_encode($data);
             $headers = [
                 'Authorization: key=' . env('FCM_SERVER_KEY'),

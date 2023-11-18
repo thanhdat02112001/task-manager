@@ -4,6 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -12,11 +14,21 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('app:notify-due-tasks')->hourly();
-        $schedule->command('app:schedule-remind')->everyMinute();
+        // $schedule->command('app:notify-due-tasks')->hourly();
+        // $schedule->command('app:schedule-remind')->everyMinute();
         $schedule->command('app:repeat-task-daily')->daily();
         $schedule->command('app:repeat-task-weekly')->weekly();
         $schedule->command('app:repeat-task-monthly')->monthly();
+        $schedule->call(function () {
+            Artisan::call('app:schedule-remind');
+            $result = Artisan::output();
+            Log::info("Command Result: $result");
+        })->everyMinute();
+        $schedule->call(function () {
+            Artisan::call('app:notify-due-tasks');
+            $result = Artisan::output();
+            Log::info("Command Result: $result");
+        })->hourly();
     }
 
     /**

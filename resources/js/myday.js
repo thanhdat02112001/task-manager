@@ -293,7 +293,7 @@ $(".rm-repeat-detail").click(function(){
      e.preventDefault()
      saveTodo()
  })
- $(".todoList, .completeList, .todoItem").on('click', '.todo-content', function() {
+ $(".todoItem").on('click', '.todo-content', function() {
     $(".rightColumn").css('display', 'flex')
     $(".steps").empty();
      let url = $(this).data('url')
@@ -334,7 +334,7 @@ $(".rm-repeat-detail").click(function(){
                 let html = ``
                 steps.map((step) => {
                     html += `<div class="d-flex w-100 justify-content-around align-items-baseline mt-2"><div class="mark-done">
-                            <input type="checkbox" name="mark-done" id="${'stepDone' + step.id}" class="checkbox-round d-none" ${step.status == 1 ? "checked" : ""}>
+                            <input type="checkbox" name="mark-done" id="${'stepDone' + step.id}" class="checkbox-round d-none doneStep" ${step.status == 1 ? "checked" : ""}>
                             <label for="${'stepDone' + step.id}" title="Mark as done"></label>
                         </div>
                         <div class="steps-content">
@@ -354,6 +354,18 @@ $(".rm-repeat-detail").click(function(){
             }
         }
      })
+ })
+ $(".steps").on('change', '.doneStep', function(e) {
+    let status = $(this).prop('checked') ? 1 : 0,
+        id     = e.target.id
+    $.ajax({
+        method: 'PUT',
+        url: 'http://localhost/step/update/',
+        data: {
+          'status': status,
+          'id' : id.replace('stepDone', '')
+        }
+      })
  })
  $(".todoList, .completeList").on('change', '.doneTask', function(e) {
     let status = $(this).prop('checked') ? 1 : 0,

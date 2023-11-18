@@ -23,6 +23,16 @@ class StepController extends Controller
         return response()->json(['newStep' => $step, 'code' => '201']);
     }
 
+    public function update(Request $request)
+    {
+        $step = Step::find($request->id);
+        $updatedStep  = $step->update(['status' => $request->status]);
+        if (!$updatedStep) {
+            return response()->json(['message' => 'Cannot update step', 'code' => '400']);
+        }
+        return response()->json(['newStep' => $updatedStep, 'code' => '201']);
+    }
+
     /**
      * Remove step
      * 
